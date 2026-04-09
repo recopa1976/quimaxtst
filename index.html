@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>QUIMAX Guía de Venta</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#fafaf7;color:#1a1a1a;-webkit-tap-highlight-color:transparent}
+input,select,button{font-family:inherit}
+.hdr{background:linear-gradient(135deg,#1B5E20,#2E7D32,#388E3C);padding:12px 16px 10px;color:#fff}
+.srch{width:100%;padding:10px 12px;border:none;border-radius:9px;font-size:19px;background:rgba(255,255,255,.95);color:#1a1a1a;box-shadow:0 3px 12px rgba(0,0,0,.15);outline:none}
+.tabs{display:flex;border-bottom:2px solid #e0e0e0;background:#fff}
+.tabs button{flex:1;padding:7px 0;border:none;cursor:pointer;font-size:19px;background:none;color:#aaa}
+.tabs button.act{color:#1B5E20;font-weight:700;border-bottom:3px solid #1B5E20}
+.card{background:#fff;border-radius:9px;border:1px solid #e8e8e8;padding:9px 11px;margin-bottom:6px;cursor:pointer}
+.card h3{font-size:15px;color:#1B5E20;font-weight:700;margin:0}
+.card .cat{font-size:17px;color:#aaa}
+.card .desc{font-size:19px;color:#555;margin-top:2px}
+.card .hook{font-size:15px;color:#E65100;font-weight:600;font-style:italic;margin-top:4px}
+.badge{font-size:17px;background:#E8F5E9;color:#1B5E20;padding:2px 5px;border-radius:4px;font-weight:600;white-space:nowrap}
+.sec{border-radius:9px;padding:9px 11px;margin-bottom:7px}
+.sec-t{font-size:19px;font-weight:700;margin-bottom:2px}
+.sec-c{font-size:17px;line-height:1.5}
+.gancho{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border:1px solid #FFB74D}
+.gancho .sec-t{color:#E65100}
+.gancho .sec-c{color:#BF360C;font-size:15px;font-weight:600}
+.venta{background:linear-gradient(135deg,#F3E5F5,#E1BEE7);border:1px solid #CE93D8}
+.venta .sec-t{color:#6A1B9A}
+.venta .sec-c{color:#4A148C;font-size:19px}
+.obj-s{background:#FFF3E0;border:1px solid #FFB74D}
+.obj-s .sec-t{color:#E65100}
+.obj-s .sec-c{color:#BF360C;font-size:19px}
+.dil{background:#E8F5E9}.dil .sec-t{color:#1B5E20}
+.uso-s{background:#FFF8E1}.uso-s .sec-t{color:#F57F17}
+.warn-s{background:#FFEBEE}.warn-s .sec-t{color:#D32F2F}
+.ideal-s{background:#E3F2FD}.ideal-s .sec-t{color:#1565C0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:7px}
+.grid2>div{border-radius:6px;padding:7px}
+.grid2 .lbl{font-size:17px;font-weight:700}
+.grid2 .val{font-size:15px;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{padding:4px 6px;text-align:left;background:#f5f5f5}
+td{padding:4px 6px;border-top:1px solid #eee}
+.btn-wa{width:100%;padding:10px;background:#25D366;color:#fff;border:none;border-radius:8px;font-size:19px;font-weight:700;cursor:pointer;margin-top:4px}
+.btn-sm{font-size:19px;padding:5px 9px;border-radius:6px;cursor:pointer;width:100%;text-align:left;margin-bottom:5px;font-weight:600;border:1px solid #ddd}
+.combo-hdr{background:#1B5E20;padding:6px 11px;color:#fff;display:flex;justify-content:space-between;font-weight:700;font-size:17px}
+.combo-body{padding:8px 11px}
+.tip-box{margin-top:5px;font-size:15px;background:#F3E5F5;border-radius:4px;padding:4px 7px;color:#6A1B9A;font-weight:500}
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-c{background:#fff;border-radius:12px;width:100%;max-width:380px;max-height:90vh;overflow:auto;padding:16px}
+.inp{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:7px;font-size:15px;margin-bottom:6px}
+.tag{padding:3px 9px;border-radius:12px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:15px;color:#555;display:inline-block;margin:2px}
+.rubro-btn{background:#fff;border-radius:9px;border:1px solid #e0e0e0;padding:10px 12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;width:100%;font-size:19px;font-weight:600;margin-bottom:6px}
+.order-card{background:#fff;border-radius:9px;border:1px solid #e0e0e0;padding:9px 11px;margin-bottom:6px}
+.frase{font-size:19px;padding:3px 0;border-bottom:1px solid #eee;font-style:italic;color:#333}
+.content{padding:10px 14px;padding-bottom:60px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<script type="text/babel">
+
+const {useState,useMemo,useEffect}=React;
+const P=[
+{id:1,n:"DESGRASS C",c:"Desengrasantes",t:["desengrasante","descarbonizante","alcalino","motor","grasa","cocina","horno","parrilla","campana","frigorífico","chasis","llantas","quinta rueda","hollín","biodiesel","gastronómico","pasarruedas","escape","agroquímicos","tractor"],
+d:"Desengrasante y descarbonizante alcalino en frío",
+h:"🔥 1L=10L preparados ($1.540/lt listo). Rocías, 3 min, cae sola. Doble uso: motor + gastronomía.",
+ri:"1L→10L (1:10) | Pesado 1L→5L (1:5)",co:"$15.400/lt → prep $1.540 (1:10)",
+di:"Normal 1:10-1:15 | Pesado 1:5 | Con agua caliente +efectividad",
+us:"Rociar → 3-5 min MAX → cepillo si necesario → hidro",
+wa:"⚠️ PUEDE ATACAR ALUMINIO +3 min. Base alcalina/soda cáustica. Siempre estar presente.",
+id2:"Motores, chasis, llantas, cocinas, hornos, parrillas, campanas, frigoríficos, tractores (biodiesel)",
+ve:"'Con 5L tenés 50L por $77K'. Gastronomía: 'un producto toda la cocina'. Mecánica: 'trabaja solo'. Agro: 'saca biodiesel pegado de tractores'.",
+ob:"Aluminio: solo +3 min. Usar Carbo Jet o Send Gras Plus para aluminio.",
+vs:"vs Carbo Jet: Desgrass rinde más pero NO aluminio. Carbo Jet puro+seguro aluminio+2 años.",
+ru:["lavadero","transporte","mecanica","gastronomia","frigorifico","hormigon","agro"],
+pr:[{q:"5L",u:"$15.400",t:"$77.000"},{q:"10L",u:"$13.300",t:"$130.300"},{q:"20+10 gratis",u:"$10.277",t:"$308.310"},{q:"40+20 gratis",u:"$9.900",t:"$594.000"}],
+cb:["Vehicular","Lavadero II","Transportes","Hormigoneras","Electrónica","Taller","Agro"],
+fr:["Rocías, dejás actuar 3 min, cepillito si está pegado y le das con la hidro.","La artillería pesada para llantas, pasarruedas, chasis y motores.","El motor de un mixer sufre el doble. Este lo arranca al instante.","Comenzar siempre con 1:10-15 e ir agregando producto.","Con agua caliente aumenta la efectividad."]},
+{id:2,n:"SIN FROTAR",c:"Lavado Carrocerías",t:["shampoo","carrocería","sin cepillar","espuma","antiestático","camión","micro","agrícola","lavadero","transporte","lonas","agroquímicos","combi","auto","flota","pulverizadora","desestatizante"],
+d:"Lava carrocerías SIN CEPILLAR — pH neutro",
+h:"⏱️ 1L=10-15 autos. 5L=200L preparados=25 camiones. Ganancia 4x-8x. pH neutro, no daña lonas ni ploteados.",
+ri:"1L→10-15 autos | 6-10 camionetas | 3-4 camiones | 5L→200L preparados",co:"$17.200/lt → cada auto ~$1.720. Cobrás $8.000+",
+di:"Carrocería 1:40 | Lonas 1:20 | Mochila 1:30 | Foam 1/3+1/3",
+us:"Desbarrar con hidro → rociar abajo→arriba → 5 min sin que seque → hidro a 10-30cm",
+wa:"Agitar antes. No dejar secar. pH NEUTRO no quema pintura.",
+id2:"Camiones, semis, micros, maquinaria agrícola/vial, autos, combis, flotas, pulverizadoras",
+ve:"'1L ($17.200)→10 autos→cobrás $80.000=ganancia 4.6x'. 'Tus choferes lo aplican solos'. 'Saca agroquímicos de pulverizadoras'. 'No reseca las lonas'.",
+ob:"'No creo que lave sin frotar': combo prueba $72.000. Videos de clientes reales.",
+vs:"vs Teflón: Sin Frotar SACA mugre. Teflón da BRILLO. Complementarios.",
+ru:["lavadero","transporte","agro"],
+pr:[{q:"5L",u:"$17.200",t:"$86.000"},{q:"10L",u:"$13.750",t:"$137.500"},{q:"20+10 gratis",u:"$11.752",t:"$352.560"},{q:"40+20 gratis",u:"-",t:"$654.000"}],
+cb:["Vehicular","Lavadero II","Transportes","Lis Granel","Agro"],
+fr:["¿Lavar carrocerías en minutos SIN frotar? ¡SÍ ES POSIBLE!","Dejá de frotar bateas enteras. Rociá, dejá que encapsule y enjuagá.","El tiempo en la base es plata que no se factura en la ruta.","Lo echás, 5 min de estacionamiento, abanico de hidro a 10cm, queda flamante.","pH NEUTRO, no quema pintura ni degrada plásticos ni lonas."]},
+{id:3,n:"EXTRA WASH CLORADO",c:"Desengrasantes",t:["detergente","clorado","cloro","desinfectante","senasa","frigorífico","carnicería","sangre","bacteria","granja","restaurante","lavandina","mesada","ganchera","hipoclorito"],
+d:"Detergente clorado — desengrase + desinfección en uno",
+h:"🧪 REEMPLAZA CLORO+DETERGENTE. 1L=80L. Preparado $269. MÁS BARATO QUE LAVANDINA. SENASA.",
+ri:"1L→80L (estándar) | 1L→50L (SENASA)",co:"$21.508/lt → prep $269 (1:80)",
+di:"Estándar 1:80 | SENASA 1:50",us:"Balde, rociado, foam lance o espumígeno",wa:"-",
+id2:"Frigoríficos, carnicerías, criaderos, restaurantes, granjas, mesadas, gancheras",
+ve:"'¿Cuánto gastás en lavandina+detergente? Este los reemplaza. Y tiene SENASA'. '¿Y si te cae Bromatología mañana?'",
+ob:"Estándar vs SENASA: SENASA con certificación oficial, rinde 1:50, tiene el papel.",
+vs:"vs lavandina+detergente: más barato, rinde más, un bidón, con SENASA.",
+ru:["frigorifico","gastronomia"],
+pr:[{q:"5L estándar",u:"$21.508",t:"$107.540"},{q:"20+10 estándar",u:"$14.339",t:"$430.160"},{q:"10L SENASA",u:"$16.519",t:"$165.190"},{q:"20+10 SENASA",u:"$11.012",t:"$330.380"},{q:"60L (Emanuel)",u:"$15.485",t:"$774.225"},{q:"210L tambor",u:"$13.967",t:"$2.374.390"}],
+cb:["Frigoríficos"],
+fr:["¿Por qué usar dos productos si podés usar uno mejor?","Detergente+Cloro en el mismo bidón.","Corta sangre y proteínas al instante, todo blanco."]},
+{id:4,n:"CARBO JET",c:"Descarbonizantes",t:["descarbonizante","inmersión","frío","aluminio","carburador","inyectora","rectificador","fundición","puro","batea","tapa cilindro"],
+d:"Descarbonizante por inmersión — seguro aluminio, dura 2 AÑOS",
+h:"🛠️ Empleado que limpia sin sueldo. Sumergís, esperás, sale nuevo. 2 AÑOS el mismo líquido.",
+ri:"PURO. Dura 2 AÑOS reutilizándolo.",co:"$33.500/lt | PROMO $21.000/lt (5L=$105K)",
+di:"PURO (no diluir)",us:"Sumergir en batea→30min a 4hs→enjuagar con hidro/solvente",
+wa:"Evitar contacto prolongado con piel.",
+id2:"Carburadores, bombas inyectoras, rectificadores, tapas cilindro, fundición",
+ve:"'¿Cuántas horas tallando? Con Carbo Jet te vas a hacer otra cosa'. Promo prueba $105K. 'Dura 2 años=inversión'.",
+ob:"'Es caro': dura 2 AÑOS, calculá costo/día. 'Tengo otro': ¿aluminio seguro? ¿dura 2 años?",
+vs:"vs Desgrass: Carbo Jet seguro aluminio. Desgrass más barato pero riesgoso en aluminio.",
+ru:["mecanica"],
+pr:[{q:"5L",u:"$33.500",t:"$175.000"},{q:"30L",u:"$19.900",t:"$597.000"},{q:"⚡PROMO PRUEBA",u:"$21.000",t:"$105.000(5L)"},{q:"50L Rectific.",u:"$16.900",t:"$845.000"},{q:"60L mayorista",u:"-",t:"$1.014.000"}],
+cb:["Rectificadoras"],
+fr:["¡Como tener un empleado que limpia sin sueldo!","Es terrible, el que más resultado da.","2 años de vida útil. Ahorrá tiempo y dinero."]},
+{id:5,n:"SHAMPOO CON TEFLÓN",c:"Lavado Carrocerías",t:["shampoo","teflón","brillo","espejo","autosecado","protector","uv","cera","siliconas","lavadero","auto","manzana","mixer","antiadherente"],
+d:"80% Teflón — brillo espejo, autosecado, protección UV",
+h:"✨ CAMPEÓN RENDIMIENTO: 1L=200L. Preparado $93. Autosecado. En mixers: el hormigón RESBALA.",
+ri:"1L→200L (1:200) hasta 400L. EL MÁS RENDIDOR.",co:"$18.670/lt → prep $93 (1:200)",
+di:"Autos 1:200 | Foam 10%+70%agua+20%vacío | Hormigoneras 1:50-100",
+us:"Diluir→aplicar→enjuagar→secado automático por siliconas",
+wa:"Poca espuma (siliconas). pH 6-8 neutro. Color rojo. Aroma manzana.",
+id2:"Autos, camiones, maquinaria, lavaderos, detailing, mixers de hormigoneras",
+ve:"'Tu shampoo ¿cuánto preparado? +$500. Este $93 con brillo espejo+UV'. Lavaderos: 'autosecado=más autos/hora'. Hormigoneras: 'el hormigón fresco resbala y no se pega'.",
+ob:"'Poca espuma': siliconas, limpia mejor. 'Ya tengo': ¿teflón? ¿UV? ¿autosecado?",
+vs:"vs Sin Frotar: Teflón=brillo+protección. Sin Frotar=sacar mugre. Complementarios.",
+ru:["lavadero","transporte","hormigon"],
+pr:[{q:"5L",u:"$18.670",t:"$93.350"},{q:"10L(15%dto)",u:"$15.630",t:"$156.300"},{q:"20+10 gratis",u:"$12.445",t:"$373.350"}],
+cb:["Vehicular","Lavadero II","Hormigoneras"],
+fr:["El toque premium. Lavá y sellá en el mismo paso.","Brillo espejo mojado inconfundible.","Repele el agua, acelera el secado a lo loco.","80% teflón 20% desengrasante. La gota se abre, se escurre y no queda betas."]},
+{id:6,n:"EF 2000",c:"Desincrustantes",t:["desincrustante","hormigón","cal","cemento","muriático","calcáreo","válvula","cañería","hormigonera","encofrado","obra","mixer","caldera","moho","pared"],
+d:"Desincrustante hormigón — reemplaza ácido muriático",
+h:"🏗️ OLVIDATE DEL MURIÁTICO. Sin gases, sin quemar, sin picar chapa. También para moho en paredes.",
+ri:"1L→4L (1:4)",co:"Desde $6.905/lt en 210L",
+di:"1:4 (1 en 4 de agua)",us:"Diluir→aplicar con trapo/brocha/pulverizador→actuar→enjuagar. También inmersión.",
+wa:"Respetar dilución. Manipulable al tacto.",
+id2:"Hormigoneras, mixers, encofrados, sanitarios, cañerías, calderas, paredes con moho",
+ve:"'¿Operarios quejándose de gases? ¿Chapa picada? Sin esos problemas'. 'Un juicio por quemadura > 100 bidones'.",
+ob:"'Muriático más barato': pica chapa, quema, gases. ¿Cuánto vale la salud?",
+vs:"vs EF Cítrico: EF 2000 pesado industrial. Cítrico para terminaciones finas.",
+ru:["hormigon","institucional"],
+pr:[{q:"10L",u:"$12.350",t:"$123.498"},{q:"30L",u:"$9.933",t:"$298.000"},{q:"120L",u:"$8.166",t:"$980.000"},{q:"210L",u:"$6.905",t:"$1.450.000"}],
+cb:["Hormigoneras"],fr:[]},
+{id:7,n:"EF CÍTRICO",c:"Desincrustantes",t:["desincrustante","ácido","cítrico","cemento","cal","óxido","salitre","obra","loseta","pastina","porcelánico","aluminio","inoxidable","llanta","ferodo","freno"],
+d:"Desincrustante ácido orgánico — seguro aluminio/inox + limpia llantas",
+h:"🍊 SEGURO aluminio e inox. Sin gases. Terminaciones + LLANTAS de aluminio (saca ferodo).",
+ri:"1L→5L (llantas) | 1L→10L (obra)",co:"$140.706 los 5L",
+di:"Llantas 1:5 | Obra hasta 1:10",us:"Diluir→aplicar→30-60 seg→cepillar si necesario→enjuagar con hidro",
+wa:"pH 1,5 (ácido). Guantes. Líquido naranja translúcido.",
+id2:"Llantas aluminio, terminaciones obra, pisos, losetas, pastina, porcelánico, talleres, gomerías",
+ve:"'Las llantas de aluminio del camión quedan impecables'. 'Saca el polvo de pastillas de freno'. 'Para dejar la obra impecable sin arruinar aberturas'.",
+ob:"-",vs:"vs EF 2000: Cítrico suave para acabados/llantas. EF 2000 hormigón pesado.",
+ru:["hormigon","mecanica","lavadero"],
+pr:[{q:"5L",u:"-",t:"$140.706"},{q:"10L",u:"-",t:"$253.271"},{q:"30L",u:"-",t:"$577.282"}],
+cb:[],fr:[]},
+{id:8,n:"GERMATRON",c:"Limpieza y Desinfección",t:["desinfectante","limpiador","desodorizante","viricida","amonio","cuaternario","pino","4en1","hospital","institución","escuela","oficina"],
+d:"4en1: limpia+desinfecta+desodoriza+viricida. Gel amarillo, olor pino.",
+h:"🧹 UN producto=CUATRO. Acción residual 8HS. 1L=120L. Preparado $218. Desinfección profunda 1:40.",
+ri:"Habitual 1L→80-120L | Profunda 1L→40L",co:"$26.103/lt → prep $218 (1:120)",
+di:"Habitual 1:80-120 | Desinfección profunda 1:40",us:"Diluir y aplicar. Remueve cera, realza colores.",
+wa:"pH 7,55. Gel amarillo. Olor pino. Densidad 0,99.",
+id2:"Instituciones, oficinas, hospitales, escuelas, baños, cocinas, mosaicos, cerámicas",
+ve:"'¿Cuántos productos comprás? Con Germatron uno solo y desinfecta 8 horas'. 'Limpiás a la mañana, a la tarde sigue activo'.",
+ob:"'Lavandina': no desodoriza, no residual, olor insoportable.",
+vs:"vs lavandina: Germatron 4en1 con acción residual 8hs.",
+ru:["institucional","gastronomia"],
+pr:[{q:"5L",u:"$26.103",t:"$130.515"},{q:"10L",u:"$23.496",t:"$234.960"},{q:"30L",u:"$20.298",t:"$608.949"}],
+cb:[],fr:[]},
+{id:9,n:"SKIN SEND",c:"Limpiamanos",t:["limpiamanos","pasta","cuarzo","abrasivo","frutilla","limón","mecánico","pintor","operario","tinta","pino"],
+d:"Pasta limpiamanos — cuarzo molido, frutilla/limón/pino",
+h:"🙌 SIN SOLVENTES. Aroma frutilla. 'Metí la mano, me sacó la piel, me morfó las uñas. Terrible, justo lo que buscaba'.",
+ri:"Poco por uso. 1kg rinde mucho.",co:"5kg=$84K | 10kg=$145K",
+di:"Puro",us:"Poca cantidad→frotar suavemente→enjuagar",wa:"-",
+id2:"Mecánicos, pintores, operarios, torneros, soldadores, electricistas",
+ve:"'¿Se lavan con nafta? Destruye la piel. Skin Send limpia mejor y huele a frutilla'. Agregar a toda venta industrial. Se puede fraccionar en potes de 1kg para reventa.",
+ob:"'Detergente': no saca grasa de poros. El cuarzo molido hace el trabajo.",vs:"-",
+ru:["mecanica","metalurgica","torneria"],
+pr:[{q:"5kg",u:"-",t:"$84.000"},{q:"10kg",u:"-",t:"$145.000"},{q:"30kg",u:"-",t:"$345.000"}],
+cb:["Taller","Metalúrgicas","Tornerías","Rectificadoras"],fr:[]},
+{id:10,n:"FOS-SEND 2",c:"Tratamiento Metales",t:["fosfatizante","desoxidante","mordiente","óxido","chapa","pintura","adherencia","metal","herrería","sal","patagonia"],
+d:"3en1: desoxida+desengrasa+crea mordiente. No inflamable.",
+h:"🎨 CHAU pintura descascarada. Los residuos SON la mordiente. Ni enjuagar. No inflamable, no ataca piel.",
+ri:"1:5 (óxido viejo) | 1:10 (óxido) | 1:20 (general) | 1:3 (óxido fuerte)",co:"$13.710/lt (5L)",
+di:"1:3 a 1:20 según necesidad",us:"Pulverizar/inmersión/trapear. 24hs antes pintar (desoxidado), 12hs otros. NO enjuagar, trapo húmedo.",
+wa:"Guantes siempre. Respetar tiempos antes de pintar.",
+id2:"Metalúrgicas, herrerías, pintura, carrocerías, estructuras, Patagonia (sal rutas)",
+ve:"'¿Te llamaron por descascarado? Con Fos-Send no pasa más'. 'Elimina óxido y deja listo para pintar'. Para sur: 'la sal de las rutas, el clima, todo influye'.",
+ob:"'Yo lijo': lijar no desengrasa ni fosfatiza. Se descascara igual.",vs:"-",
+ru:["metalurgica"],
+pr:[{q:"5L",u:"$13.710",t:"$68.550"},{q:"10L",u:"$11.496",t:"$114.960"},{q:"30L",u:"$9.677",t:"$290.310"}],
+cb:["Metalúrgicas"],fr:["Elimina el óxido y te deja el metal listo para pintar.","Trabaja cumpliendo 3 funciones: desengrasar, desoxidar y generar mordiente."]},
+{id:11,n:"COLD 54 EP",c:"Maquinado",t:["aceite","soluble","emulsionable","corte","maquinado","refrigerante","extrema presión","ferroso","torno"],
+d:"Aceite soluble — extrema presión, con bactericida",h:"⚙️ No se pudre: bactericida aprobado.",
+ri:"En agua",co:"Consultar",di:"En agua",us:"Emulsionar según máquina",wa:"-",
+id2:"Acero, aleaciones, ferrosos/no ferrosos",ve:"'Si tu aceite se pudre, Cold 54 EP no'.",ob:"-",vs:"-",
+ru:["torneria"],pr:[],cb:[],fr:[]},
+{id:12,n:"BACTERIMAX",c:"Limpieza y Desinfección",t:["bactericida","fungicida","olor","cañería","desagüe","cucaracha","pulga","mosca","rata","basura","cloaca","sifón","salmonella","hormiga"],
+d:"Bactericida+fungicida+mata insectos+ahuyenta roedores",
+h:"🦠 1:100 a 1:200 SUPER RENDIDOR. Emulsión blanco-lechosa. Mata cucarachas/pulgas, ahuyenta moscas/ratas.",
+ri:"1L→100 a 200L. Tip: 100cm³ en balde por cañerías al final del día.",co:"$148.160/5L → prep ~$1.482 (1:100)",
+di:"1:100 a 1:200. SIEMPRE agregar producto AL AGUA (no al revés).",
+us:"Diluir→aplicar. Cañerías: 100cm³ en balde, hacer correr al final del día.",
+wa:"Alejado de niños. No ingerir. Contacto ojos: enjuagar+médico.",
+id2:"Cañerías, desagües, sifones, cámaras, basura, industrias, carnicerías",
+ve:"'Elimina Salmonella y E.Coli, neutraliza olores'. 'Rociá tachos de basura y olvidate de plagas'. 'Al final del día 100cm³ por las cañerías y nunca más atascos ni olores'.",
+ob:"-",vs:"vs Germatron: Bacterimax cañerías/plagas. Germatron superficies visibles.",
+ru:["frigorifico","gastronomia","institucional"],
+pr:[{q:"5L",u:"-",t:"$148.160"},{q:"10L",u:"-",t:"$296.300"},{q:"20+10 gratis",u:"-",t:"$592.600"}],
+cb:["Frigoríficos"],fr:[]},
+{id:13,n:"ANTISOLD",c:"Soldadura",t:["antiadherente","soldadura","autógena","arco","eléctrica","proyecciones","bolitas","torcha","amoladora"],
+d:"Antiadherente soldadura — adiós amoladora",h:"⚡ 5 seg ANTES y las bolitas NO pegan. HORAS de amoladora ahorradas. Se aplica directo (según ficha técnica).",
+ri:"Puro",co:"Consultar",di:"Directo/puro (según ficha técnica, sin confirmar dilución)",us:"Rociar directo antes de soldar en las áreas deseadas",wa:"Consultar si hay versión diluible. Versiones: SS, 151 (libre silicona), 152 NI (no inflamable), 153 (base agua).",
+id2:"Metalúrgicas, herrerías, soldadores",ve:"'¿Horas/semana con amoladora? Con Antisold 5 seg y listo. Facturá esas horas'. Protege torcha.",
+ob:"-",vs:"-",ru:["metalurgica"],pr:[],cb:["Metalúrgicas"],fr:[]},
+{id:14,n:"GRASA CHASIS",c:"Lubricantes",t:["grasa","hidropelente","lubricante","calcio","chasis","camión","cojinete","bomba agua","litio","bastidor","agro"],
+d:"Grasa hidropelente — reemplaza litio, rinde 3x más",
+h:"💧 REPELE AGUA. Litio se lava, Chasis se queda. RINDE 3X MÁS que litio convencional.",
+ri:"Pura. Rinde 3x más que litio.",co:"Consultar",di:"Pura",us:"Puntos de lubricación",wa:"-",
+id2:"Platos camiones, cojinetes, chasis, bastidores, bombas agua, maquinaria agrícola",
+ve:"'Tu litio se lava con agua/barro. Chasis no. Rinde 3 veces más. Es la evolución'.",
+ob:"'Uso litio siempre': se lava. Chasis tiene calcio+antiherrumbe+3x rendimiento.",vs:"-",
+ru:["transporte","agro"],pr:[],cb:["Agro"],fr:[]},
+{id:15,n:"D-24 / SENDECO 24",c:"Desengrasantes",t:["desengrasante","senasa","sebo","grasa animal","frigorífico","autoclave","roldana","ganchera"],
+d:"Desengrasante SENASA — grasa animal / sebo",h:"🥩 Terror del sebo. Arranca grasa animal sin esfuerzo.",
+ri:"-",co:"Consultar",di:"1:5-10",us:"Según superficie",wa:"-",
+id2:"Frigoríficos, pisos con sebo, rejillas, gancheras, roldanas",
+ve:"'El sebo se pega. D-24 lo arranca'. Para gancheras y guías de roldanas.",
+ob:"-",vs:"vs Clorado: D-24 sebo. Clorado sangre+desinfección.",
+ru:["frigorifico"],pr:[],cb:["Frigoríficos"],fr:[]},
+{id:16,n:"COLD SEND BLUE",c:"Maquinado",t:["soluble","sintético","rectificado","corte","azul","antioxidante","torno","fresa","magnético"],
+d:"Soluble sintético azul — no deja residuos, no irrita",
+h:"💎 NO ensucia, NO afecta magnéticos, NO ataca pintura, NO irrita piel.",
+ri:"En agua",co:"Consultar",di:"En agua",us:"Preparar solución",wa:"-",
+id2:"Rectificado, torneado, fresado, perforado de aceros/fundiciones",
+ve:"'¿Tu soluble deja residuo? ¿Irrita? Blue no. No afecta magnéticos=diferenciador'.",
+ob:"-",vs:"-",ru:["torneria"],pr:[],cb:["Tornerías"],fr:[]},
+{id:17,n:"ANTIOX",c:"Protección Metales",t:["antioxidante","anticorrosivo","película","húmeda","seca","corrosión","2 años"],
+d:"Antioxidante — protección hasta 2 años",h:"🛡️ UNA aplicación, 2 AÑOS protegido. Versiones: húmeda, moderna, seca.",
+ri:"Puro",co:"Consultar",di:"Puro",us:"Sobre metal limpio",wa:"-",
+id2:"Maquinaria, estructuras, piezas en stock, depósito",
+ve:"'¿Piezas oxidándose en el galpón? Una aplicación, 2 años'. Complemento post-limpieza.",
+ob:"-",vs:"-",ru:["mecanica","metalurgica"],pr:[],cb:[],fr:[]},
+{id:18,n:"LIS GRANEL",c:"Lavado Carrocerías",t:["revividor","negro","plástico","vinílico","cuero","torpedo","babero","paragolpes","cubiertas","acrílico","silicona","goma"],
+d:"Revividor negros — efecto seco, nutritivo, no aceitoso",
+h:"⬛ Negro profundo+seco (NO aceitoso, NO mancha parabrisas). Nutre cueros. El detalle LIMPIO vs IMPECABLE.",
+ri:"Puro, poco por aplicación",co:"5L=$199.896 | Aerosol x6=$180.078",
+di:"Puro",us:"Aplicar directo",wa:"-",
+id2:"Cubiertas, baberos, paragolpes, torpedos, cueros, tableros, gomas",
+ve:"'90% impacto visual: los negros'. Lavaderos: 'cobrá revivido extra'. Flotas: 'imagen en ruta'. 'Úsalo interiores+exteriores plásticos, cueros, cubiertas'.",
+ob:"'Silicona de auto': aceitosa, mancha parabrisas. Lis no.",vs:"-",
+ru:["lavadero","transporte"],
+pr:[{q:"5L",u:"-",t:"$199.896"},{q:"10L",u:"-",t:"$359.813"},{q:"30L",u:"-",t:"$817.005"},{q:"Aerosol x6",u:"-",t:"$180.078"},{q:"Aerosol x12",u:"-",t:"$308.707"},{q:"Aerosol x24",u:"-",t:"$515.314"}],
+cb:["Transportes","Lis Granel"],fr:[]},
+{id:19,n:"EMULSEND",c:"Limpieza General",t:["limpiador","multipropósito","apc","solvente","bancada","tapizado","interior","no inflamable","tornería","lavadero","frigorífico","colegio","horno ahumado"],
+d:"APC multipropósito — no inflamable, soluble en agua. Amarillo, olor dulce.",
+h:"🔄 Limpia TODO: máquinas, tapizados, hornos ahumado, hasta crayones en colegios. No inflamable. 1:5 a 1:20.",
+ri:"1L→5 a 20L",co:"5L=$112.395 | 10L=$202.311",
+di:"1:5 a 1:20 según suciedad. Inmersión hasta 1:10. Con calor 60/70°C mejora.",
+us:"Pulverización, cepillado, trapeado o inmersión. Actuar segundos, retirar con trapo.",
+wa:"pH 10,5-12. Densidad 1,01-1,02.",
+id2:"Tornerías, lavaderos (interiores), frigoríficos (hornos ahumado), colegios, industria alimenticia",
+ve:"Tornerías: 'bancadas de aceites de corte'. Lavaderos: 'APC interiores extra'. Colegios: 'saca crayón y tinta'. Alimenticios: 'hornos cocción y ahumado'.",
+ob:"'Thinner': Emulsend no inflamable, más seguro.",vs:"-",
+ru:["torneria","lavadero","frigorifico","institucional"],
+pr:[{q:"5L",u:"-",t:"$112.395"},{q:"10L",u:"-",t:"$202.311"},{q:"20+10 gratis",u:"-",t:"$404.622"}],
+cb:["Tornerías","Lavadero Profesional"],fr:[]},
+{id:20,n:"DIELSEND",c:"Electrónica",t:["dieléctrico","contacto","limpiador","placa","circuito","contactor","sulfato","tablero"],
+d:"Limpiador contactos dieléctrico — sin cortocircuito",
+h:"⚡ SIN RIESGO. Evapora rápido, cero residuos. Versiones: Dielsend y Dielsend A (atóxico).",
+ri:"Puro",co:"30L=$477K (Dielsend) | 30L=$465K (Dielsend A)",
+di:"Puro",us:"Aplicar directo sobre contactos/placas",wa:"No inflamable",
+id2:"Electrónica, tableros, contactores, PLCs, motores eléctricos",
+ve:"'Un falso contacto para una línea. ¿Cuánto cuesta 1h parada?'.",
+ob:"-",vs:"-",ru:["electronica"],
+pr:[{q:"Dielsend 30L",u:"-",t:"$477.000+IVA"},{q:"Dielsend A 30L",u:"-",t:"$465.000+IVA"}],
+cb:["Electrónica"],fr:[]},
+{id:21,n:"SINTEGRASS",c:"Lubricantes",t:["grasa","conductora","siliconada","terminal","sulfato","humedad","borne","batería","impermeabilizante"],
+d:"Grasa conductora/impermeabilizante siliconada",h:"🔌 Mejora conductividad+sella humedad+anti re-sulfatación.",
+ri:"Pura, poco",co:"Consultar",di:"Pura",us:"Después de limpiar con Dielsend",wa:"-",
+id2:"Terminales, bornes, conexiones, fichas",ve:"'Primero Dielsend, después Sintegrass. Limpiar y proteger'.",
+ob:"-",vs:"-",ru:["electronica"],pr:[],cb:["Electrónica"],fr:[]},
+{id:22,n:"SEND GRAS PLUS",c:"Desengrasantes",t:["desengrasante","motor","aluminio","rociado","pincelado","bichos","batea"],
+d:"Desengrasante para ALUMINIO — rociado, pincelado o batea",
+h:"🔧 SÍ podés usar en aluminio tranquilo. Saca bichos. También para batea.",
+ri:"1L→5L (1:5)",co:"5L=$79.000",di:"1:5 agua/hidrocarburos",us:"Rociar/pincelar/batea→actuar→enjuagar",wa:"-",
+id2:"Motores aluminio, carrocerías (bichos), bateas",
+ve:"'Motor aluminio? Este va. Desgrass puede atacar, este no'.",
+ob:"'Uso Desgrass todo': puede atacar aluminio. Send Gras Plus no.",
+vs:"vs Desgrass: seguro aluminio. Desgrass más potente pero riesgoso.",
+ru:["mecanica"],pr:[{q:"5L",u:"$15.800",t:"$79.000"}],cb:["Taller"],fr:[]},
+{id:23,n:"GLASS",c:"Limpieza General",t:["limpiavidrios","vidrio","cristal","oficina","espejo","parabrisas","antiempañante"],
+d:"Limpiavidrios profesional — sin vetas, secado rápido. También antiempañante.",
+h:"🪟 Sin marcas, sin vetas. Se diluye 1:3. Secado rápido. También funciona como antiempañante.",
+ri:"1L→3L (1:3)",co:"5L=$92.740",di:"1:3 (1L en 3L agua)",
+us:"Pulverizar→retirar con paño/papel. No requiere enjuague.",wa:"-",
+id2:"Oficinas, comercios, vidrieras, hogares, vehículos, parabrisas",
+ve:"Complemento institucional. 'También sirve como antiempañante de parabrisas'.",
+ob:"-",vs:"-",ru:["institucional","lavadero"],
+pr:[{q:"5L",u:"-",t:"$92.740"},{q:"10L",u:"-",t:"$166.933"}],cb:[],fr:[]},
+{id:24,n:"CARPET LIMP",c:"Limpieza General",t:["alfombra","tapizado","limpiador","ácaros","mancha","café","sangre","leche"],
+d:"Limpiador profesional de alfombras y tapizados",
+h:"🧹 Elimina ácaros+manchas difíciles (café, sangre, grasas). Dilución 1:80. SUPER RENDIDOR.",
+ri:"1L→80L (125ml en 10L agua)",co:"5L=$119.520",di:"1:80 (125ml + 10L agua)",
+us:"Aplicar con máquina o manualmente. Desinfecta y elimina olores.",wa:"-",
+id2:"Lavaderos (interiores), hoteles, hogares, tapicerías",
+ve:"'Ofrecé limpieza de tapizados como servicio extra en tu lavadero'. Elimina ácaros=valor agregado salud.",
+ob:"-",vs:"-",ru:["lavadero","institucional"],
+pr:[{q:"5L",u:"-",t:"$119.520"},{q:"10L",u:"-",t:"$215.136"},{q:"30L",u:"-",t:"$491.467"}],cb:[],fr:[]},
+{id:25,n:"ECO PREFERED",c:"Limpieza y Desinfección",t:["cloro","polvo","desinfectante","lavandina","hipoclorito","dicloroisocianurato","biodegradable"],
+d:"Desinfectante en polvo — fabrica tu propio cloro/lavandina",
+h:"🧪 18g en 100L = cloro. 1kg en 200L = lavandina. EN POLVO: fácil transporte+almacenamiento. Más poderoso que cloro líquido.",
+ri:"18g→100L de cloro | 1kg→200L de lavandina",co:"5kg=$222.500",
+di:"18g en 100L (cloro) | según necesidad (lavandina)",
+us:"Disolver en agua, agitar, aplicar sobre superficie limpia, 20 min, enjuagar.",
+wa:"pH 8. Dicloroisocianurato de sodio. Biodegradable.",
+id2:"Instituciones, hospitales, industria alimenticia, agua potable",
+ve:"'Fabricá tu propia lavandina más barata y más potente. En polvo: llevalo a cualquier lado'. Más poderoso que cloro líquido, no mancha, biodegradable.",
+ob:"-",vs:"vs lavandina líquida: más potente, biodegradable, fácil transporte, no mancha.",
+ru:["institucional","frigorifico"],
+pr:[{q:"5kg",u:"$44.500/kg",t:"$222.500"},{q:"10kg",u:"$43.260/kg",t:"$432.600"},{q:"30kg",u:"$39.423/kg",t:"$1.182.690"}],cb:[],fr:[]},
+{id:26,n:"EFD-JET",c:"Desincrustantes",t:["quitasarro","sanitario","loza","azulejo","baño","cal"],
+d:"Quitasarro profesional para sanitarios",h:"🚿 Terror del sarro. Aplicás, enjuagás, reluciente.",
+ri:"-",co:"5L=$141.625",di:"-",us:"Aplicar y enjuagar",wa:"-",
+id2:"Baños, sanitarios, hoteles, instituciones",
+ve:"Junto con Germatron para instituciones. 'En 30L: se facturan 20, se envían 30'.",
+ob:"-",vs:"-",ru:["institucional"],
+pr:[{q:"5L",u:"$28.325",t:"$141.625"},{q:"10L",u:"$25.493",t:"$254.925"},{q:"20+10(30L)",u:"$23.241",t:"~$464.814"}],cb:[],fr:[]},
+{id:27,n:"RECTI SEND",c:"Maquinado",t:["soluble","sintético","rectificadora","refrigerante","antioxidante"],
+d:"Soluble sintético para rectificadoras — antioxidante",h:"❄️ Menos calor, más vida útil. Antioxidante especial.",
+ri:"En agua",co:"10L=$234.900 | Promo 20L=$17.400/lt",di:"En agua",us:"Según máquina",wa:"-",
+id2:"Talleres mecanizado, rectificadoras",ve:"'Si tu soluble se pudre u oxida piezas, Recti Send no'.",ob:"-",vs:"-",
+ru:["torneria"],pr:[{q:"10L",u:"$23.490",t:"$234.900"},{q:"30L",u:"$21.433",t:"$428.652"},{q:"Promo 20L",u:"$17.400",t:"~$348.000"}],cb:[],fr:[]},
+{id:28,n:"EP 16",c:"Lubricantes",t:["grasa","hidropelente","alta temperatura","rodamiento","hormigonera","cinta","homocinética","embarcación"],
+d:"Grasa especial hidropelente — alta temp hasta 180°C",
+h:"🔥 Soporta 180°C + altas presiones. Hidrorrepelente. Para cintas hormigoneras, punta de eje, embarcaciones.",
+ri:"Pura",co:"5kg=$532.200 (sep 2025)",di:"Pura",
+us:"Aplicar con pincel, cepillo o grasera en puntos críticos",wa:"-",
+id2:"Rodamientos cintas hormigoneras, punta de eje, maquinaria vial/agrícola, embarcaciones, homocinéticas",
+ve:"'Soporta 180°C y altas presiones. Para los rodamientos de las cintas del mixer'. También grasa homocinética.",
+ob:"-",vs:"vs Grasa Chasis: EP 16 para alta temp/extrema presión. Chasis para lubricación general de transporte.",
+ru:["hormigon","transporte"],pr:[{q:"5kg",u:"-",t:"$532.200"},{q:"10kg",u:"-",t:"$963.360"},{q:"30kg",u:"-",t:"$2.174.940"}],cb:[],fr:[]},
+{id:29,n:"MICROPEL",c:"Protección",t:["cera","desmoldante","antiadherente","hormigón","carrocería","protector"],
+d:"Cera líquida antiadherente — desmoldante de hormigón",
+h:"🛡️ Película antiadherente en carrocerías: el hormigón NO se pega. Desmoldante+protector.",
+ri:"1L→3L (1:3)",co:"10L=$138.370 (sep 2025)",di:"1:3",us:"Diluir y aplicar sobre carrocería",wa:"-",
+id2:"Carrocerías de mixers, encofrados, moldes",
+ve:"'Aplicás en la carrocería del mixer y el hormigón resbala. Facilita la limpieza al final del día'.",
+ob:"-",vs:"-",ru:["hormigon"],pr:[{q:"10L",u:"-",t:"$138.370"},{q:"30L",u:"-",t:"$287.640"},{q:"60L",u:"-",t:"$565.740"}],cb:[],fr:[]},
+{id:30,n:"REVIVIDOR CUBIERTAS",c:"Lavado Carrocerías",t:["revividor","cubiertas","gomas","neumáticos","azul"],
+d:"Revividor específico para cubiertas/neumáticos",h:"🔵 Específico para cubiertas. Distinto al Lis Granel.",
+ri:"Puro",co:"5L=$180.963",di:"Puro",us:"Aplicar directo",wa:"-",
+id2:"Cubiertas, neumáticos, gomas",ve:"'Para cubiertas específicamente, si querés algo especializado'.",
+ob:"-",vs:"vs Lis Granel: Revividor Cubiertas es específico para neumáticos. Lis Granel es para plásticos/cueros/torpedos.",
+ru:["lavadero","transporte"],pr:[{q:"5L",u:"-",t:"$180.963"},{q:"10L",u:"-",t:"$361.926"}],cb:[],fr:[]},
+{id:31,n:"BI-TES",c:"Desengrasantes",t:["desengrasante","multiuso","taller","hogar","emulsionante"],
+d:"Desengrasante multiuso",h:"🧴 Comodín: taller, industria y hogar.",
+ri:"-",co:"Consultar",di:"-",us:"Aplicar, actuar, retirar",wa:"-",id2:"Talleres, industrias, hogar",
+ve:"Para el que no sabe qué necesita.",ob:"-",vs:"-",ru:["mecanica"],pr:[],cb:[],fr:[]},
+{id:32,n:"SUPERWASH",c:"Desengrasantes",t:["detergente","industrial","concentrado"],
+d:"Detergente industrial todoterreno",h:"🧹 Simple, efectivo.",
+ri:"-",co:"Consultar",di:"-",us:"Aplicar y enjuagar",wa:"-",id2:"Industrias general",
+ve:"Para genérico.",ob:"-",vs:"-",ru:["institucional"],pr:[],cb:[],fr:[]},
+];
+
+const CB=[
+{n:"Vehicular 3x1L",p:"$72-75K",h:"🔥 PUERTA DE ENTRADA. Después vuelve por bidones.",it:["Shampoo Teflón 1L (1:100)","Desgrass C 1L (1:10)","Sin Frotar 1L (1:20)"],ri:"3 camiones/6 camionetas/10 autos",tg:"Primera compra",ti:"Siempre arrancar con este. Bajo riesgo para el cliente."},
+{n:"Combo Lis Granel",p:"$85.000",h:"⬛ Premium: lavado+negros.",it:["Lis Granel 1L","Desgrass C 1L","Sin Frotar 1L"],ri:"3/6/10",tg:"Lavaderos premium",ti:"Para el que ya conoce el básico."},
+{n:"Combo Transporte",p:"$90.000",h:"🚛 'Camión espejo' sin esfuerzo.",it:["Sin Frotar 1L (carrocerías)","Desgrass C 1L (chasis/motor)","Lis Granel 1L (negros)"],ri:"3/6/10",tg:"Flotas, transportistas",ti:"Lis Granel marca la diferencia visual."},
+{n:"Combo Taller",p:"$75.000",h:"🔧 Todo para el mecánico.",it:["Desgrass C 1L (1:5-10)","Skin Send Pasta 1kg","Send Gras Plus 1L (aluminio 1:5)"],ri:"-",tg:"Mecánicos, talleres",ti:"Send Gras Plus seguro aluminio + Desgrass resto + pasta manos."},
+{n:"Combo Agro",p:"$80.000",h:"🌾 Maquinaria agrícola impecable.",it:["Sin Frotar 1L (carrocerías/agroquímicos)","Desgrass C 1L (motores/biodiesel)","Grasa Chasis 1kg (3x más que litio)"],ri:"-",tg:"Campo, contratistas rurales",ti:"'Saca biodiesel pegado de tractores'. Grasa Chasis rinde 3x litio."},
+{n:"Combo Hormigoneras",p:"$85.000",h:"🏗️ El hormigón RESBALA con el Teflón.",it:["EF 2000 (desincrustar)","Desgrass C (motor 1:10)","Shampoo Teflón (antiadherente 1:50-100)"],ri:"-",tg:"Hormigoneras, mixers",ti:"El Teflón como antiadherente. ESE es el gancho."},
+{n:"Combo Frigoríficos",p:"$90.000",h:"🥩 '¿Preparado para Bromatología?'",it:["Extra Wash Clorado 1L (sangre 1:80)","D-24 1L (sebo 1:5-10)","Bacterimax 1L (bacterias 1:30)"],ri:"-",tg:"Frigoríficos, carnicerías",ti:"Meter miedo con inspecciones SENASA/Bromatología."},
+{n:"Combo Lavadero II",p:"Consultar",h:"✨ Más autos/hora.",it:["Sin Frotar (mugre sin frotar)","Shampoo Teflón (brillo+autosecado)","Desgrass C (llantas/motor)"],ri:"-",tg:"Lavaderos profesionales",ti:"Autosecado=menos secado=más $."},
+{n:"Combo Tornerías",p:"$80.000",h:"⚙️ Limpiar+lubricar+manos.",it:["Emulsend (bancadas)","Cold Send Blue (lubricar)","Skin Send (manos)"],ri:"-",tg:"Torneros, mecanizado",ti:"Blue no afecta magnéticos. Diferencial."},
+{n:"Combo Electrónica",p:"Consultar",h:"⚡ '¿1h de línea parada cuánto cuesta?'",it:["Dielsend (contactos)","Sintegrass (proteger)","Desgrass C (carcasas)"],ri:"-",tg:"Electricistas, técnicos",ti:"Falso contacto=línea parada."},
+{n:"Combo Metalúrgicas",p:"Consultar",h:"🔩 Chau amoladora. Chau descascarado.",it:["Fos-Send 2 (preparar chapa)","Antisold (antiadherente)","Skin Send (manos)"],ri:"-",tg:"Herrerías, soldadores",ti:"Horas de amoladora ahorradas."},
+{n:"Combo Rectificadoras",p:"$85.000",h:"🔩 Kit esencial rectificador.",it:["Desgrass C 1L (cajas cambio/dirección/motores 1:5-10)","Carbo Jet 1L (aluminio/fundición, larga vida)","Skin Send Pasta 1L (humectante, no daña piel)"],ri:"-",tg:"Rectificadores",ti:"Carbo Jet: aluminio+2 años."},
+];
+
+const INDS=[
+{id:"lavadero",lb:"🚗 Lavaderos/Detailing",pi:[2,5,1,18,30,19,24,23,7]},
+{id:"transporte",lb:"🚛 Transporte/Flotas",pi:[2,1,18,5,14,30,28]},
+{id:"frigorifico",lb:"🥩 Frigoríficos/Carnicerías",pi:[3,15,12,1,19,25]},
+{id:"mecanica",lb:"🔧 Mecánica/Talleres",pi:[1,4,22,9,17,31,7]},
+{id:"metalurgica",lb:"⚒️ Metalúrgicas/Herrerías",pi:[10,13,9,17]},
+{id:"torneria",lb:"⚙️ Tornerías/Mecanizado",pi:[16,11,19,9,27]},
+{id:"hormigon",lb:"🏗️ Hormigón/Obra",pi:[6,7,1,5,29,28]},
+{id:"electronica",lb:"⚡ Electrónica/Eléctrica",pi:[20,21,1]},
+{id:"gastronomia",lb:"🍳 Gastronomía",pi:[1,3,8,12]},
+{id:"institucional",lb:"🏢 Institucional/Oficinas",pi:[8,26,23,12,25,6,32]},
+{id:"agro",lb:"🌾 Agro/Campo",pi:[2,1,14,5]},
+];
+
+const FR={
+g:["Somos fabricantes hace 30 años. NO cobramos envío. Lo pagás cuando lo recibís.","El precio es más IVA con factura, sino va con remito.","La forma de pago la elige el cliente.","Calcula una semana y lo tenés.","Al cargar el pedido hoy, no hace falta transferir, el envío es sin cargo."],
+cb:["Te lo mando y lo pagás al recibir.","Avisame si te interesa y te lo envío para que conozcas.","Decime si te parece bien y te mando sin cargo medio litro de Germatron para que pruebes.","Estos combos están bárbaros, podés con poca plata conocer más productos."],
+cl:["Después de ver ME DECÍS y te paso costos y formas de pago.","Pasando en limpio sería...","Lo cargo y te lo mando para el 15, así tenés tiempo.","Si esto es mucho, comprá un combo y con poco dinero lo probás.","Preciso confirmación SI o NO para proseguir."],
+};
+
+
+const PRICE_LIST=[
+{n:"DESGRASS C",opts:[{q:"5L",p:77000},{q:"10L",p:130300},{q:"20+10 gratis (30L)",p:308310},{q:"40+20 gratis (60L)",p:594000}]},
+{n:"SIN FROTAR",opts:[{q:"5L",p:86000},{q:"10L",p:137500},{q:"20+10 gratis (30L)",p:352560},{q:"40+20 gratis (60L)",p:654000}]},
+{n:"EXTRA WASH CLORADO (Estándar)",opts:[{q:"5L",p:107540},{q:"20+10 gratis (30L)",p:430160}]},
+{n:"EXTRA WASH CLORADO (SENASA)",opts:[{q:"10L",p:165190},{q:"20+10 gratis (30L)",p:330380}]},
+{n:"CARBO JET",opts:[{q:"5L",p:175000},{q:"5L PROMO PRUEBA",p:105000},{q:"30L",p:597000},{q:"50L Rectificadora",p:845000}]},
+{n:"SHAMPOO CON TEFLÓN",opts:[{q:"5L",p:93350},{q:"10L (15%dto)",p:156300},{q:"20+10 gratis (30L)",p:373350}]},
+{n:"EF 2000",opts:[{q:"10L",p:123498},{q:"30L",p:298000},{q:"120L",p:980000},{q:"210L",p:1450000}]},
+{n:"EF CÍTRICO",opts:[{q:"5L",p:140706},{q:"10L",p:253271},{q:"30L",p:577282}]},
+{n:"GERMATRON",opts:[{q:"5L",p:130515},{q:"10L",p:234960},{q:"30L",p:608949}]},
+{n:"SKIN SEND PASTA",opts:[{q:"5kg",p:84000},{q:"10kg",p:145000},{q:"30kg",p:345000}]},
+{n:"FOS-SEND 2",opts:[{q:"5L",p:68550},{q:"10L",p:114960},{q:"30L",p:290310}]},
+{n:"BACTERIMAX",opts:[{q:"5L",p:148160},{q:"10L",p:296300},{q:"20+10 gratis (30L)",p:592600}]},
+{n:"LIS GRANEL",opts:[{q:"5L",p:199896},{q:"10L",p:359813},{q:"30L",p:817005},{q:"Aerosol x6",p:180078},{q:"Aerosol x12",p:308707},{q:"Aerosol x24",p:515314}]},
+{n:"EMULSEND",opts:[{q:"5L",p:112395},{q:"10L",p:202311},{q:"20+10 gratis (30L)",p:404622}]},
+{n:"SEND GRAS PLUS",opts:[{q:"5L",p:79000}]},
+{n:"GLASS",opts:[{q:"5L",p:92740},{q:"10L",p:166933}]},
+{n:"CARPET LIMP",opts:[{q:"5L",p:119520},{q:"10L",p:215136},{q:"30L",p:491467}]},
+{n:"ECO PREFERED",opts:[{q:"5kg",p:222500},{q:"10kg",p:432600},{q:"30kg",p:1182690}]},
+{n:"EFD-JET",opts:[{q:"5L",p:141625},{q:"10L",p:254925},{q:"20+10 (30L)",p:464814}]},
+{n:"RECTI SEND",opts:[{q:"10L",p:234900},{q:"30L",p:428652}]},
+{n:"REVIVIDOR CUBIERTAS",opts:[{q:"5L",p:180963},{q:"10L",p:361926}]},
+{n:"EP 16",opts:[{q:"5kg",p:532200},{q:"10kg",p:963360},{q:"30kg",p:2174940}]},
+{n:"MICROPEL",opts:[{q:"10L",p:138370},{q:"30L",p:287640},{q:"60L",p:565740}]},
+{n:"Combo Vehicular 3x1L",opts:[{q:"1 combo",p:72000}]},
+{n:"Combo Lis Granel 3x1L",opts:[{q:"1 combo",p:85000}]},
+{n:"Combo Transporte 3x1L",opts:[{q:"1 combo",p:90000}]},
+{n:"Combo Taller 3x1L",opts:[{q:"1 combo",p:75000}]},
+{n:"Combo Agro 3x1L",opts:[{q:"1 combo",p:80000}]},
+{n:"Combo Hormigoneras",opts:[{q:"1 combo",p:85000}]},
+{n:"Combo Frigoríficos",opts:[{q:"1 combo",p:90000}]},
+{n:"Combo Tornerías",opts:[{q:"1 combo",p:80000}]},
+{n:"Combo Rectificadoras",opts:[{q:"1 combo",p:85000}]},
+];
+
+function OrderModal({initial,onClose,phone,onShowPhone,onSaveOrder}){
+const [items,setItems]=useState(initial?[{prod:initial,pres:"",price:0}]:[{prod:"",pres:"",price:0}]);
+const [cli,setCli]=useState({nm:"",ci:"",dr:"",lc:"",pv:"",cp:"",em:""});
+const [fact,setFact]=useState("remito");
+const [pago,setPago]=useState("CR-Efectivo");
+const [envio,setEnvio]=useState("gratis");
+const is2={width:"100%",padding:"8px 10px",border:"1px solid #ddd",borderRadius:7,fontSize:22,boxSizing:"border-box",fontFamily:"inherit",marginBottom:6};
+const sel2={...is2,appearance:"auto"};
+
+const addItem=()=>setItems([...items,{prod:"",pres:"",price:0}]);
+const removeItem=(i)=>setItems(items.filter((_,j)=>j!==i));
+const updateItem=(i,field,val)=>{
+  const nw=[...items];nw[i]={...nw[i],[field]:val};
+  if(field==="pres"){
+    const pl=PRICE_LIST.find(p=>p.n===nw[i].prod);
+    const opt=pl?.opts.find(o=>o.q===val);
+    nw[i].price=opt?.p||0;
+  }
+  if(field==="prod"){nw[i].pres="";nw[i].price=0;}
+  setItems(nw);
+};
+
+const subtotal=items.reduce((s,it)=>s+it.price,0);
+const iva=fact==="factura"?Math.round(subtotal*0.21):0;
+const envioC=envio==="cliente"?0:0; // placeholder
+const total=subtotal+iva;
+
+const fmt=(n)=>"$"+n.toLocaleString("es-AR");
+
+const doSend=()=>{
+  const ph2=phone.replace(/\D/g,"");
+  if(!ph2){onShowPhone();return}
+  const itemsTxt=items.filter(it=>it.prod).map(it=>it.prod+" "+it.pres+(it.price?" ("+fmt(it.price)+")":"")).join("\n");
+  const msg="📋 *NUEVO PEDIDO QUIMAX*\n\n👤 *"+cli.nm+"*\n🆔 "+cli.ci+"\n📍 "+cli.dr+", "+cli.lc+", "+cli.pv+" ("+cli.cp+")\n"+(cli.em?"📧 "+cli.em+"\n":"")+"\n📦 *Productos:*\n"+itemsTxt+"\n\n💲 Subtotal: "+fmt(subtotal)+(iva?"\n📊 IVA (21%): "+fmt(iva):"")+"\n💰 *TOTAL: "+fmt(total)+"*\n\n🧾 "+(fact==="factura"?"Con FACTURA (+IVA)":"Con REMITO (sin IVA)")+"\n💳 "+pago.replace("CR-","Contra reembolso - ")+"\n🚚 "+(envio==="gratis"?"Envío SIN CARGO":envio==="cliente"?"Envío a cargo del CLIENTE":"Envío: consultar (zona especial)")+"\n📅 "+new Date().toLocaleDateString("es-AR");
+  const order={nm:cli.nm,ci:cli.ci,dr:cli.dr,lc:cli.lc,pv:cli.pv,pr:items.map(i=>i.prod+" "+i.pres).join(" + "),ca:items.length+" producto(s)",pg:pago,total:fmt(total),dt:new Date().toISOString(),id:Date.now()};
+  onSaveOrder(order);
+  window.open("https://wa.me/"+ph2+"?text="+encodeURIComponent(msg),"_blank");
+};
+
+return(<div className="modal"><div className="modal-c">
+<div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20"}}>📋 Armar Pedido</div>
+<button onClick={onClose} style={{background:"none",border:"none",fontSize:22,cursor:"pointer"}}>✕</button></div>
+
+<div style={{fontSize:20,fontWeight:700,color:"#1B5E20",marginBottom:4}}>📦 Productos</div>
+{items.map((it,i)=>{
+const pl=PRICE_LIST.find(p=>p.n===it.prod);
+return(<div key={i} style={{background:"#f9f9f9",borderRadius:8,padding:8,marginBottom:6,border:"1px solid #eee"}}>
+<div style={{display:"flex",gap:4,alignItems:"center"}}>
+<div style={{flex:1}}>
+<select style={sel2} value={it.prod} onChange={e=>updateItem(i,"prod",e.target.value)}>
+<option value="">— Elegir producto —</option>
+<optgroup label="⭐ Combos">
+{PRICE_LIST.filter(p=>p.n.startsWith("Combo")).map(p=><option key={p.n} value={p.n}>{p.n}</option>)}
+</optgroup>
+<optgroup label="🧴 Productos">
+{PRICE_LIST.filter(p=>!p.n.startsWith("Combo")).map(p=><option key={p.n} value={p.n}>{p.n}</option>)}
+</optgroup>
+</select>
+{it.prod&&pl&&<select style={sel2} value={it.pres} onChange={e=>updateItem(i,"pres",e.target.value)}>
+<option value="">— Presentación —</option>
+{pl.opts.map(o=><option key={o.q} value={o.q}>{o.q} — {fmt(o.p)}</option>)}
+</select>}
+</div>
+{items.length>1&&<button onClick={()=>removeItem(i)} style={{background:"#ffebee",border:"none",borderRadius:6,padding:"4px 8px",fontSize:20,cursor:"pointer",color:"#c62828",alignSelf:"flex-start"}}>✕</button>}
+</div>
+{it.price>0&&<div style={{fontSize:20,fontWeight:700,color:"#1B5E20",marginTop:4,textAlign:"right"}}>{fmt(it.price)}</div>}
+</div>)
+})}
+<button onClick={addItem} style={{width:"100%",padding:7,background:"#E8F5E9",border:"1px dashed #A5D6A7",borderRadius:7,fontSize:20,fontWeight:600,cursor:"pointer",color:"#1B5E20",marginBottom:8}}>+ Agregar otro producto</button>
+
+<div style={{fontSize:20,fontWeight:700,color:"#1B5E20",marginBottom:4}}>🧾 Facturación</div>
+<select style={sel2} value={fact} onChange={e=>setFact(e.target.value)}>
+<option value="remito">Con REMITO (sin IVA)</option>
+<option value="factura">Con FACTURA (+21% IVA)</option>
+</select>
+
+<div style={{fontSize:20,fontWeight:700,color:"#1B5E20",marginBottom:4}}>💳 Forma de Pago</div>
+<select style={sel2} value={pago} onChange={e=>setPago(e.target.value)}>
+<optgroup label="Contra reembolso (pagás al recibir)">
+<option value="CR-Efectivo">Efectivo al recibir</option>
+<option value="CR-Cheque 30d">Cheque físico 30 días</option>
+<option value="CR-Cheque 60d">Cheque físico 60 días</option>
+<option value="CR-Cheque 90d">Cheque físico 90 días</option>
+</optgroup>
+<optgroup label="Pago anticipado">
+<option value="Transferencia + IVA (anticipada)">Transferencia + IVA</option>
+<option value="Transferencia sin factura (anticipada)">Transferencia sin factura</option>
+<option value="E-cheq 30/60/90 (anticipado)">E-cheq 30/60/90</option>
+<option value="MercadoPago (anticipado)">MercadoPago</option>
+</optgroup>
+</select>
+
+<div style={{fontSize:20,fontWeight:700,color:"#1B5E20",marginBottom:4}}>🚚 Envío</div>
+<select style={sel2} value={envio} onChange={e=>setEnvio(e.target.value)}>
+<option value="gratis">Envío GRATIS (paga QUIMAX)</option>
+<option value="cliente">Envío a cargo del CLIENTE (contra reembolso)</option>
+<option value="consultar">Zona especial (Ushuaia/isla) — consultar</option>
+</select>
+
+<div style={{background:"#E8F5E9",borderRadius:8,padding:10,marginBottom:8}}>
+<div style={{display:"flex",justifyContent:"space-between",fontSize:20}}><span>Subtotal:</span><span style={{fontWeight:600}}>{fmt(subtotal)}</span></div>
+{iva>0&&<div style={{display:"flex",justifyContent:"space-between",fontSize:20,color:"#E65100"}}><span>IVA (21%):</span><span style={{fontWeight:600}}>+{fmt(iva)}</span></div>}
+<div style={{display:"flex",justifyContent:"space-between",fontSize:20,fontWeight:700,color:"#1B5E20",marginTop:4,borderTop:"1px solid #A5D6A7",paddingTop:4}}><span>TOTAL:</span><span>{fmt(total)}</span></div>
+{subtotal===0&&<div style={{fontSize:22,color:"#888",marginTop:2}}>Seleccioná productos para ver el total</div>}
+</div>
+
+<div style={{fontSize:20,fontWeight:700,color:"#1B5E20",marginBottom:4}}>👤 Datos del Cliente</div>
+<input style={is2} value={cli.nm} onChange={e=>setCli(c2=>({...c2,nm:e.target.value}))} placeholder="Nombre y Apellido *"/>
+<input style={is2} value={cli.ci} onChange={e=>setCli(c2=>({...c2,ci:e.target.value}))} placeholder="CUIT / CUIL / DNI *"/>
+<input style={is2} value={cli.dr} onChange={e=>setCli(c2=>({...c2,dr:e.target.value}))} placeholder="Dirección de entrega *"/>
+<input style={is2} value={cli.lc} onChange={e=>setCli(c2=>({...c2,lc:e.target.value}))} placeholder="Localidad *"/>
+<input style={is2} value={cli.pv} onChange={e=>setCli(c2=>({...c2,pv:e.target.value}))} placeholder="Provincia *"/>
+<input style={is2} value={cli.cp} onChange={e=>setCli(c2=>({...c2,cp:e.target.value}))} placeholder="Código Postal"/>
+<input style={is2} value={cli.em} onChange={e=>setCli(c2=>({...c2,em:e.target.value}))} placeholder="Email (opcional)"/>
+
+<button className="btn-wa" onClick={doSend} disabled={!cli.nm||!items.some(i=>i.prod)} style={{background:cli.nm&&items.some(i=>i.prod)?"#25D366":"#ccc",cursor:cli.nm&&items.some(i=>i.prod)?"pointer":"default"}}>📲 CONFIRMAR Y ENVIAR POR WHATSAPP</button>
+<div style={{fontSize:20,color:"#888",marginTop:5,textAlign:"center"}}>Genera mensaje de WhatsApp con el detalle + queda guardado en Pedidos.</div>
+</div></div>);
+}
+
+
+function App(){
+const [q,setQ]=useState("");const [sel,setSel]=useState(null);const [tab,setTab]=useState("productos");
+const [sv,setSv]=useState(false);const [sf,setSf]=useState(false);const [rf,setRf]=useState(null);
+const [ords,setOrds]=useState(()=>{try{return JSON.parse(localStorage.getItem("qx_o")||"[]")}catch{return[]}});
+const [of2,setOf]=useState(null);const [fd,setFd]=useState({nm:"",ci:"",dr:"",lc:"",pv:"",pr:"",ca:"",pg:"Contra reembolso - Efectivo"});
+const [ph,setPh]=useState(()=>localStorage.getItem("qx_ph")||"");const [sp,setSp]=useState(false);
+const so=(o)=>{setOrds(o);localStorage.setItem("qx_o",JSON.stringify(o))};
+const nm=(s)=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+const res=useMemo(()=>{
+  let pool=P;if(rf)pool=P.filter(p=>p.ru.includes(rf));
+  if(!q.trim())return rf?pool:[];
+  const ws=nm(q).split(/\s+/).filter(Boolean);
+  return pool.map(p=>{let sc=0;const a=nm([p.n,p.d,p.c,p.t.join(" "),p.id2,p.h,p.ve,p.vs||""].join(" "));
+  for(const w of ws){if(nm(p.n).includes(w))sc+=10;if(p.t.some(t=>nm(t).includes(w)))sc+=5;if(nm(p.c).includes(w))sc+=3;if(a.includes(w))sc+=1}
+  return{...p,sc}}).filter(p=>p.sc>0).sort((a,b)=>b.sc-a.sc);
+},[q,rf]);
+
+const cr=useMemo(()=>{if(!q.trim())return CB;return CB.filter(c=>{const s=nm(c.n+" "+c.it.join(" ")+" "+c.tg+" "+c.h);return nm(q).split(/\s+/).some(w=>s.includes(w))})},[q]);
+
+const swa=()=>{
+  const p2=ph.replace(/\D/g,"");if(!p2){setSp(true);return}
+  const m="📋 *NUEVO PEDIDO QUIMAX*\n\n👤 "+fd.nm+"\n🆔 "+fd.ci+"\n📍 "+fd.dr+", "+fd.lc+", "+fd.pv+"\n\n📦 "+fd.pr+"\n🔢 "+fd.ca+"\n💳 "+fd.pg+"\n📅 "+new Date().toLocaleDateString("es-AR");
+  const o={...fd,dt:new Date().toISOString(),id:Date.now()};so([o,...ords]);
+  window.open("https://wa.me/"+p2+"?text="+encodeURIComponent(m),"_blank");
+  setOf(null);setFd({nm:"",ci:"",dr:"",lc:"",pv:"",pr:"",ca:"",pg:"Contra reembolso - Efectivo"});
+};
+
+const Sec=({cn,ic,ti,ch})=><div className={"sec "+cn}><div className="sec-t">{ic} {ti}</div><div className="sec-c">{ch}</div></div>;
+const is={width:"100%",padding:"8px 10px",border:"1px solid #ddd",borderRadius:7,fontSize:22,boxSizing:"border-box",fontFamily:"inherit",marginBottom:6};
+
+return(<div>
+<div className="hdr">
+<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+<div style={{display:"flex",alignItems:"center",gap:7}}>
+<div style={{width:28,height:28,borderRadius:6,background:"rgba(255,255,255,.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,fontWeight:700}}>Q</div>
+<div><div style={{fontSize:20,fontWeight:700}}>QUIMAX — Guía de Venta</div><div style={{fontSize:19,opacity:.7}}>32 PROD · 12 COMBOS · ABR 2026</div></div></div>
+<button onClick={()=>setSp(!sp)} style={{background:"rgba(255,255,255,.2)",border:"none",borderRadius:6,padding:"4px 8px",color:"#fff",fontSize:19,cursor:"pointer"}}>⚙️</button></div>
+{sp&&<div style={{background:"rgba(0,0,0,.2)",borderRadius:8,padding:10,marginBottom:8}}>
+<div style={{fontSize:19,marginBottom:4}}>Tu WhatsApp (ej: 5491112345678):</div>
+<div style={{display:"flex",gap:6}}><input value={ph} onChange={e=>setPh(e.target.value)} placeholder="5491112345678" style={{flex:1,padding:"6px 8px",borderRadius:6,border:"none",fontSize:22}}/>
+<button onClick={()=>{localStorage.setItem("qx_ph",ph);setSp(false)}} style={{background:"#fff",color:"#1B5E20",border:"none",borderRadius:6,padding:"6px 10px",fontWeight:700,fontSize:20,cursor:"pointer"}}>OK</button></div></div>}
+<div style={{position:"relative"}}>
+<input className="srch" type="text" placeholder="¿Qué necesita tu cliente?" value={q} onChange={e=>{setQ(e.target.value);setSel(null);setRf(null)}}/>
+{q.trim()&&<button onClick={()=>{setQ("");setSel(null);setRf(null)}} style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",background:"#e0e0e0",border:"none",borderRadius:"50%",width:24,height:24,fontSize:20,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:"#555",fontWeight:700}}>✕</button>}
+</div>
+</div>
+
+<div className="tabs">
+{[["productos","🧴"],["combos","📦"],["rubros","🏭"],["pedidos","📋"],["info","ℹ️"]].map(([k,l])=>
+<button key={k} className={tab===k?"act":""} onClick={()=>{setTab(k);setSel(null)}}>{l}</button>)}
+</div>
+
+<div className="content">
+{tab==="productos"&&!sel&&(<>
+{!q.trim()&&!rf?(<div style={{textAlign:"center",padding:"20px 10px",color:"#888"}}>
+<div style={{fontSize:32,marginBottom:6}}>🔍</div><div style={{fontSize:20,marginBottom:10}}>¿Qué necesita tu cliente?</div>
+<div style={{display:"flex",flexWrap:"wrap",gap:3,justifyContent:"center"}}>
+{["motor","aluminio","frigorífico","lavadero","soldadura","hormigón","grasa","desinfectante","óxido","pintar","contacto","camión","sebo","brillo","tornería","cucaracha","tapizado","llanta","cloro","sarro","agro","cera"].map(w=>
+<span key={w} className="tag" onClick={()=>setQ(w)}>{w}</span>)}
+</div></div>):res.length===0?<div style={{textAlign:"center",padding:16,color:"#888",fontSize:20}}>🤷 Nada con "{q}"</div>:(
+<div>
+{rf&&<button onClick={()=>setRf(null)} style={{background:"#E8F5E9",border:"1px solid #A5D6A7",color:"#1B5E20",cursor:"pointer",fontSize:19,fontWeight:700,padding:"8px 16px",borderRadius:8,width:"100%",textAlign:"left",marginBottom:6}}>← TODOS LOS PRODUCTOS</button>}
+<div style={{fontSize:22,color:"#888",marginBottom:4}}>{res.length} resultado{res.length>1?"s":""}</div>
+{res.map(p=><div key={p.id} className="card" onClick={()=>{setSel(p);setSv(false);setSf(false)}}>
+<div style={{display:"flex",justifyContent:"space-between",gap:6}}>
+<div style={{flex:1}}><h3>{p.n}</h3><div className="cat">{p.c}</div></div>
+{p.pr.length>0&&<span className="badge">desde {p.pr[0].t}</span>}
+</div>
+<div className="desc">{p.d}</div>
+<div className="hook">{p.h.length>110?p.h.slice(0,110)+"...":p.h}</div>
+</div>)}</div>)}
+</>)}
+
+{tab==="productos"&&sel&&<div>
+<button onClick={()=>setSel(null)} style={{background:"#E8F5E9",border:"1px solid #A5D6A7",color:"#1B5E20",cursor:"pointer",fontSize:19,fontWeight:700,marginBottom:8,padding:"8px 16px",borderRadius:8,width:"100%",textAlign:"left"}}>← VOLVER A RESULTADOS</button>
+<div style={{background:"#fff",borderRadius:10,border:"1px solid #e0e0e0",overflow:"hidden"}}>
+<div style={{background:"linear-gradient(135deg,#1B5E20,#388E3C)",padding:"10px 13px",color:"#fff"}}>
+<div style={{fontSize:19,fontWeight:700}}>{sel.n}</div><div style={{fontSize:22,opacity:.8}}>{sel.c}</div></div>
+<div style={{padding:"10px 13px"}}>
+<Sec cn="gancho" ic="🎯" ti="GANCHO" ch={sel.h}/>
+<div className="grid2">
+<div style={{background:"#E8F5E9"}}><div className="lbl" style={{color:"#1B5E20"}}>📊 RINDE</div><div className="val">{sel.ri}</div></div>
+<div style={{background:"#E3F2FD"}}><div className="lbl" style={{color:"#1565C0"}}>💲 COSTO PREP.</div><div className="val">{sel.co}</div></div></div>
+<Sec cn="dil" ic="💧" ti="DILUCIÓN" ch={sel.di}/>
+<Sec cn="uso-s" ic="🔧" ti="USO" ch={sel.us}/>
+{sel.wa&&sel.wa!=="-"&&<Sec cn="warn-s" ic="⚠️" ti="CUIDADO" ch={sel.wa}/>}
+<Sec cn="ideal-s" ic="🎯" ti="IDEAL PARA" ch={sel.id2}/>
+<Sec cn="venta" ic="🗣️" ti="CÓMO VENDERLO" ch={sel.ve}/>
+{sel.ob&&sel.ob!=="-"&&<Sec cn="obj-s" ic="🛡️" ti="OBJECIONES" ch={sel.ob}/>}
+{sel.fr&&sel.fr.length>0&&<div>
+<button className="btn-sm" style={{background:"#E8F5E9",borderColor:"#A5D6A7",color:"#1B5E20"}} onClick={()=>setSf(!sf)}>💬 {sf?"Ocultar":"Ver"} frases reales ({sel.fr.length})</button>
+{sf&&<div style={{background:"#FAFAFA",borderRadius:7,padding:9,marginBottom:7,border:"1px solid #e0e0e0"}}>
+{sel.fr.map((f,i)=><div key={i} className="frase">"{f}"</div>)}</div>}</div>}
+{sel.vs&&sel.vs!=="-"&&<div>
+<button className="btn-sm" style={{background:"#f5f5f5",color:"#555"}} onClick={()=>setSv(!sv)}>⚔️ {sv?"Ocultar":"Ver"} comparación</button>
+{sv&&<div style={{background:"#FAFAFA",borderRadius:7,padding:9,fontSize:19,lineHeight:1.5,border:"1px solid #e0e0e0",marginBottom:7}}>{sel.vs}</div>}</div>}
+{sel.pr.length>0&&<div style={{marginBottom:7}}>
+<div style={{fontSize:20,fontWeight:700,marginBottom:4,color:"#1B5E20"}}>💰 PRECIOS</div>
+<div style={{borderRadius:6,border:"1px solid #e0e0e0",overflow:"hidden"}}>
+<table><thead><tr><th>Cant</th><th style={{textAlign:"right"}}>x Lt</th><th style={{textAlign:"right"}}>Total</th></tr></thead>
+<tbody>{sel.pr.map((p,i)=><tr key={i}><td>{p.q}</td><td style={{textAlign:"right",color:"#888"}}>{p.u}</td><td style={{textAlign:"right",fontWeight:700,color:"#1B5E20"}}>{p.t}</td></tr>)}</tbody></table></div>
+<div style={{fontSize:20,color:"#888",marginTop:2}}>+IVA factura | Remito sin IVA | 30/60/90 días | Envío gratis</div></div>}
+{sel.cb.length>0&&<div style={{marginBottom:7}}>
+<div style={{fontSize:19,fontWeight:700,marginBottom:3}}>📦 En combos:</div>
+<div style={{display:"flex",flexWrap:"wrap",gap:4}}>{sel.cb.map(c=><span key={c} className="badge">{c}</span>)}</div></div>}
+<button className="btn-wa" onClick={()=>{setOf(sel);setFd(f=>({...f,pr:sel.n}))}}>📲 ARMAR PEDIDO (yo cargo)</button>
+<button onClick={()=>{
+const ph2=ph.replace(/\D/g,"");
+if(!ph2){setSp(true);return}
+const txt="*📋 PEDIDO QUIMAX*\n\nProducto: *"+sel.n+"*\n\nPor favor completá tus datos:\n\n👤 Nombre y Apellido:\n🆔 CUIT/CUIL/DNI:\n📍 Dirección:\n🏙️ Localidad:\n🗺️ Provincia:\n📮 Código Postal:\n📦 Cantidad que necesitás:\n💳 Forma de pago (efectivo/cheque/transferencia):\n\n_Respondé este mensaje con los datos completos y procesamos tu pedido. Envío GRATIS._";
+navigator.clipboard.writeText(txt).then(()=>alert("✅ Formulario copiado! Pegalo en el chat con tu cliente.")).catch(()=>{window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank")});
+}} style={{width:"100%",padding:10,background:"#1565C0",color:"#fff",border:"none",borderRadius:8,fontSize:22,fontWeight:700,cursor:"pointer",marginTop:4}}>📤 COPIAR FORMULARIO PARA ENVIAR AL CLIENTE</button>
+</div></div></div>}
+
+{tab==="combos"&&<div>
+{cr.map((c,i)=><div key={i} style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",overflow:"hidden",marginBottom:7}}>
+<div className="combo-hdr"><span>📦 {c.n}</span><span>{c.p}</span></div>
+<div className="combo-body">
+<div style={{fontSize:19,fontWeight:600,color:"#E65100",marginBottom:5,fontStyle:"italic"}}>{c.h}</div>
+{c.it.map((p,j)=><div key={j} style={{fontSize:19,padding:"2px 0"}}><b>{j+1}.</b> {p}</div>)}
+{c.ri&&c.ri!=="-"&&<div style={{marginTop:4,fontSize:22,color:"#1B5E20",fontWeight:600}}>📊 {c.ri}</div>}
+<div style={{marginTop:3,fontSize:22,color:"#888"}}>🎯 {c.tg}</div>
+<div className="tip-box">💡 {c.ti}</div>
+<button className="btn-wa" style={{fontSize:20,padding:7,marginTop:6}} onClick={()=>{setOf({n:c.n});setFd(f=>({...f,pr:c.n}))}}>📲 PEDIR (yo cargo)</button>
+<button onClick={()=>{
+const ph2=ph.replace(/\D/g,"");
+const txt="*📋 PEDIDO QUIMAX*\n\n📦 Combo: *"+c.n+"* ("+c.p+")\nContenido: "+c.it.join(" + ")+"\n\nPor favor completá tus datos:\n\n👤 Nombre y Apellido:\n🆔 CUIT/CUIL/DNI:\n📍 Dirección:\n🏙️ Localidad:\n🗺️ Provincia:\n📮 Código Postal:\n💳 Forma de pago (efectivo/cheque/transferencia):\n\n_Respondé este mensaje con los datos y procesamos tu pedido. Envío GRATIS._";
+navigator.clipboard.writeText(txt).then(()=>alert("✅ Copiado! Pegalo en el chat con tu cliente.")).catch(()=>{window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank")});
+}} style={{width:"100%",padding:7,background:"#1565C0",color:"#fff",border:"none",borderRadius:6,fontSize:19,fontWeight:700,cursor:"pointer",marginTop:4}}>📤 COPIAR FORM PARA CLIENTE</button>
+</div></div>)}</div>}
+
+{tab==="rubros"&&<div>
+<div style={{fontSize:20,color:"#888",marginBottom:6}}>Tocá un rubro</div>
+{INDS.map(ind=><button key={ind.id} className="rubro-btn" onClick={()=>{setTab("productos");setRf(ind.id);setQ("")}}>
+<span>{ind.lb}</span><span style={{fontSize:19,color:"#888",fontWeight:400}}>{ind.pi.length} prod →</span></button>)}</div>}
+
+{tab==="pedidos"&&<div>
+{ords.length===0?<div style={{textAlign:"center",padding:24,color:"#888",fontSize:20}}>📋 Sin pedidos</div>:
+<div>{ords.map((o,i)=><div key={o.id||i} className="order-card">
+<div style={{display:"flex",justifyContent:"space-between"}}><div style={{fontWeight:700,fontSize:22,color:"#1B5E20"}}>{o.pr}</div><div style={{fontSize:22,color:"#888"}}>{new Date(o.dt).toLocaleDateString("es-AR")}</div></div>
+<div style={{fontSize:19,marginTop:3}}>👤 {o.nm} · 🆔 {o.ci}</div>
+<div style={{fontSize:19}}>📍 {o.dr}, {o.lc}, {o.pv}</div>
+<div style={{fontSize:19}}>📦 {o.ca} · 💳 {o.pg}</div></div>)}
+<button onClick={()=>{if(confirm("¿Borrar todos?"))so([])}} style={{background:"#ffebee",border:"1px solid #ef9a9a",borderRadius:6,padding:6,fontSize:19,cursor:"pointer",color:"#c62828",width:"100%",marginTop:6}}>🗑️ Borrar todo</button>
+</div>}</div>}
+
+{tab==="info"&&<div style={{display:"flex",flexDirection:"column",gap:7}}>
+<div style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",padding:11}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20",marginBottom:5}}>💬 Frases generales</div>
+{FR.g.map((f,i)=><div key={i} className="frase">"{f}"</div>)}</div>
+<div style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",padding:11}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20",marginBottom:5}}>📦 Frases combos</div>
+{FR.cb.map((f,i)=><div key={i} className="frase">"{f}"</div>)}</div>
+<div style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",padding:11}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20",marginBottom:5}}>🎯 Técnicas de cierre</div>
+{FR.cl.map((f,i)=><div key={i} className="frase">"{f}"</div>)}</div>
+<div style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",padding:11}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20",marginBottom:5}}>💳 Formas de Pago</div>
+{["Contra reembolso: efectivo o cheque 30/60/90","Transferencia+IVA→envío QUIMAX","E-cheq adelantado→envío QUIMAX","Transferencia sin factura (remito)","⚠️ Transferencia/MercadoPago=ANTICIPADA. Al recibir=solo EFECTIVO.","⚠️ Envío Ushuaia/isla: NO es gratis (aduana)."].map((x,i)=><div key={i} style={{fontSize:19,padding:"2px 0"}}>✅ {x}</div>)}</div>
+<div style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",padding:11}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20",marginBottom:5}}>📋 Datos Alta Cliente</div>
+<div style={{fontSize:19}}>Nombre, Apellido, CUIT/CUIL/DNI, Dirección, Localidad, Provincia, CP, Email (opc), Método pago</div></div>
+<div style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",padding:11}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20",marginBottom:5}}>👥 Equipo Comercial</div>
+<div style={{fontSize:19,lineHeight:1.6}}>Gustavo Tortosa · Ariel H. Martínez · Emanuel Martínez · Tadeo Hidalgo · Franco Armilio · Carlos Lorca · Adrián · Felipe (admin) · Verónica (oficina)</div></div>
+<div style={{background:"#fff",borderRadius:9,border:"1px solid #e0e0e0",padding:11}}>
+<div style={{fontWeight:700,fontSize:20,color:"#1B5E20",marginBottom:5}}>🏭 Empresa</div>
+<div style={{fontSize:19,lineHeight:1.6}}>QUIMAX S.A. (SENDECO S.A.) · +30 años · Liniers/CABA<br/>Av. JB Justo 9642, CABA (C1408ALN)<br/>(011) 4641-5237 / 4642-2799 / 4644-6565<br/>ventas@quimax.com.ar · www.quimax.com.ar · @quimax.oficial<br/>Horario: L-V 9:30-18hs · Sáb 9-13hs<br/>Imprenta etiquetas reventa: 11-4653-1809</div></div>
+</div>}
+
+{of2&&<OrderModal initial={fd.pr} onClose={()=>setOf(null)} phone={ph} onShowPhone={()=>setSp(true)} onSaveOrder={(o)=>{so([o,...ords]);setOf(null)}}/>}
+</div></div>);
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+
+</script></body></html>
