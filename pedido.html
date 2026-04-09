@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1B5E20">
 <title>QUIMAX — Pedido</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,8 +11,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:'DM Sans',sans-serif;background:#f5f5f0;color:#1a1a1a;min-height:100vh;padding-bottom:100px}
 .hdr{background:linear-gradient(135deg,#1B5E20,#2E7D32,#388E3C);padding:20px;color:#fff;text-align:center;position:sticky;top:0;z-index:10}
-.hdr h1{font-size:20px;margin-bottom:4px}
-.hdr p{font-size:13px;opacity:.8}
+.hdr h1{font-size:20px;margin-bottom:4px}.hdr p{font-size:13px;opacity:.8}
 .wrap{max-width:520px;margin:0 auto;padding:16px}
 .section{margin-bottom:20px}
 .section-t{font-size:17px;font-weight:700;color:#1B5E20;margin-bottom:10px;display:flex;align-items:center;gap:8px}
@@ -24,33 +22,23 @@ select:focus,input:focus{outline:none;border-color:#1B5E20;box-shadow:0 0 0 3px 
 input::placeholder{color:#aaa}
 .item-card{background:#fafafa;border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid #eee}
 .item-price{font-size:18px;font-weight:700;color:#1B5E20;text-align:right;margin-top:6px}
-.btn-add{width:100%;padding:14px;background:#E8F5E9;border:2px dashed #A5D6A7;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;color:#1B5E20;-webkit-tap-highlight-color:transparent}
+.btn-add{width:100%;padding:14px;background:#E8F5E9;border:2px dashed #A5D6A7;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;color:#1B5E20}
 .btn-add:active{background:#C8E6C9}
 .btn-remove{background:#ffebee;border:none;border-radius:8px;padding:8px 14px;font-size:18px;cursor:pointer;color:#c62828;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .totals{background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border-radius:12px;padding:16px;margin-bottom:16px}
 .total-row{display:flex;justify-content:space-between;font-size:16px;padding:4px 0}
 .total-final{font-size:24px;font-weight:700;color:#1B5E20;border-top:2px solid #A5D6A7;padding-top:10px;margin-top:8px}
-.btn-confirm{width:100%;padding:18px;background:#25D366;color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(37,211,102,.3);position:sticky;bottom:16px;z-index:10}
-.btn-confirm:active{transform:scale(.98)}
-.btn-confirm:disabled{background:#ccc;box-shadow:none}
+.btn-cr{width:100%;padding:18px;background:#25D366;color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(37,211,102,.3)}
+.btn-pagar{width:100%;padding:18px;background:#1565C0;color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(21,101,192,.3)}
+.btn-cr:active,.btn-pagar:active{transform:scale(.98)}
+.btn-cr:disabled,.btn-pagar:disabled{background:#ccc;box-shadow:none}
 .nota{font-size:13px;color:#888;text-align:center;margin-top:12px;padding-bottom:20px}
 .envio-note{font-size:14px;color:#1B5E20;font-weight:600;background:#E8F5E9;padding:10px 14px;border-radius:10px;margin-top:10px;text-align:center}
+.pago-badge{display:inline-block;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-top:6px}
+.pago-pend{background:#FFF3E0;color:#E65100}.pago-cr{background:#E8F5E9;color:#1B5E20}
 .logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px}
 .logo-c{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
-.pago-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-top:6px}
-.pago-pend{background:#FFF3E0;color:#E65100}
-.pago-cr{background:#E8F5E9;color:#1B5E20}
-.success-screen{text-align:center;padding:40px 20px}
-.success-icon{font-size:64px;margin-bottom:16px}
-.success-title{font-size:22px;font-weight:700;color:#1B5E20;margin-bottom:10px}
-.success-desc{font-size:15px;color:#555;margin-bottom:20px;line-height:1.5}
-.success-card{background:#fff;border-radius:12px;border:1px solid #e0e0e0;padding:16px;text-align:left;font-size:14px;line-height:1.8}
-@media(max-width:400px){
-  .wrap{padding:12px}
-  select,input{padding:12px 14px;font-size:15px}
-  .total-final{font-size:22px}
-  .btn-confirm{font-size:17px;padding:16px}
-}
+@media(max-width:400px){.wrap{padding:12px}select,input{padding:12px 14px;font-size:15px}.total-final{font-size:22px}}
 </style>
 </head>
 <body>
@@ -59,9 +47,8 @@ input::placeholder{color:#aaa}
 <p>Completá tus datos y confirmá el pedido</p>
 </div>
 <div class="wrap" id="app"></div>
-
 <script>
-const PRICE_LIST=[
+const PL=[
 {n:"DESGRASS C",opts:[{q:"5L",p:77000},{q:"10L",p:130300},{q:"20+10 gratis (30L)",p:308310},{q:"40+20 gratis (60L)",p:594000}]},
 {n:"SIN FROTAR",opts:[{q:"5L",p:86000},{q:"10L",p:137500},{q:"20+10 gratis (30L)",p:352560},{q:"40+20 gratis (60L)",p:654000}]},
 {n:"EXTRA WASH CLORADO (Estándar)",opts:[{q:"5L",p:107540},{q:"20+10 gratis (30L)",p:430160}]},
@@ -95,157 +82,140 @@ const PRICE_LIST=[
 {n:"Combo Tornerías",opts:[{q:"1 combo",p:80000}]},
 {n:"Combo Rectificadoras",opts:[{q:"1 combo",p:85000}]},
 ];
-
-const params=new URLSearchParams(window.location.search);
-const sellerPhone=params.get("ph")||"";
-const preProduct=params.get("prod")||"";
-const prePres=params.get("pres")||"";
-const prePrice=parseInt(params.get("price")||"0");
-
-let items=preProduct?[{prod:preProduct,pres:prePres,price:prePrice}]:[{prod:"",pres:"",price:0}];
+const par=new URLSearchParams(location.search);
+const ph=par.get("ph")||"";
+const preProd=par.get("prod")||"";
+const prePres=par.get("pres")||"";
+const prePrice=parseInt(par.get("price")||"0");
+let items=preProd?[{prod:preProd,pres:prePres,price:prePrice}]:[{prod:"",pres:"",price:0}];
 let cli={nm:"",ci:"",dr:"",lc:"",pv:"",cp:"",em:""};
 let fact="remito",pago="CR-Efectivo",envio="gratis";
-
-const fmt=(n)=>"$"+n.toLocaleString("es-AR");
-const isAnticipado=()=>["Transferencia","MercadoPago","E-cheq"].includes(pago);
+const fmt=n=>"$"+n.toLocaleString("es-AR");
+const esc=s=>(s||"").replace(/"/g,"&quot;");
+const antic=()=>["Transferencia","MercadoPago","E-cheq"].includes(pago);
 
 function chk(){
-  const valid=cli.nm&&cli.ci&&cli.dr&&cli.lc&&cli.pv&&cli.cp&&items.some(i=>i.prod&&i.pres);
-  const btn=document.getElementById("btnConfirm");
-  if(btn){btn.disabled=!valid;btn.style.background=valid?"#25D366":"#ccc";}
+  const ok=cli.nm&&cli.ci&&cli.dr&&cli.lc&&cli.pv&&cli.cp&&items.some(i=>i.prod&&i.pres);
+  const b=document.getElementById("btnC");
+  if(b){b.disabled=!ok;b.style.background=ok?(antic()?"#1565C0":"#25D366"):"#ccc";b.style.boxShadow=ok?(antic()?"0 4px 12px rgba(21,101,192,.3)":"0 4px 12px rgba(37,211,102,.3)"):"none";}
 }
 
 function render(){
   const sub=items.reduce((s,it)=>s+it.price,0);
   const iva=fact==="factura"?Math.round(sub*0.21):0;
-  const total=sub+iva;
-  const valid=cli.nm&&cli.ci&&cli.dr&&cli.lc&&cli.pv&&cli.cp&&items.some(i=>i.prod&&i.pres);
-
-  const itemsH=items.map((it,i)=>{
-    const pl=PRICE_LIST.find(p=>p.n===it.prod);
-    let presH='<option value="">— Presentación —</option>';
-    if(pl)presH+=pl.opts.map(o=>`<option value="${o.q}" ${it.pres===o.q?"selected":""}>${o.q} — ${fmt(o.p)}</option>`).join("");
-    return`<div class="item-card">
-      <div style="display:flex;gap:8px;align-items:start">
-        <div style="flex:1">
-          <select onchange="uProd(${i},this.value)">
-            <option value="">— Elegí producto —</option>
-            <optgroup label="⭐ Combos">${PRICE_LIST.filter(p=>p.n.startsWith("Combo")).map(p=>`<option value="${p.n}" ${it.prod===p.n?"selected":""}>${p.n}</option>`).join("")}</optgroup>
-            <optgroup label="🧴 Productos">${PRICE_LIST.filter(p=>!p.n.startsWith("Combo")).map(p=>`<option value="${p.n}" ${it.prod===p.n?"selected":""}>${p.n}</option>`).join("")}</optgroup>
-          </select>
-          ${it.prod?`<select onchange="uPres(${i},this.value)">${presH}</select>`:""}
-        </div>
-        ${items.length>1?`<button class="btn-remove" onclick="rItem(${i})">✕</button>`:""}
-      </div>
-      ${it.price>0?`<div class="item-price">${fmt(it.price)}</div>`:""}
-    </div>`;
-  }).join("");
+  const tot=sub+iva;
+  const ok=cli.nm&&cli.ci&&cli.dr&&cli.lc&&cli.pv&&cli.cp&&items.some(i=>i.prod&&i.pres);
 
   document.getElementById("app").innerHTML=`
-    <div class="section"><div class="section-t">📦 Productos</div>${itemsH}
-      <button class="btn-add" onclick="aItem()">+ Agregar otro producto</button></div>
+  <div class="section"><div class="section-t">📦 Productos</div>
+  ${items.map((it,i)=>{
+    const pl=PL.find(p=>p.n===it.prod);
+    let ph2='<option value="">— Presentación —</option>';
+    if(pl)ph2+=pl.opts.map(o=>`<option value="${o.q}" ${it.pres===o.q?"selected":""}>${o.q} — ${fmt(o.p)}</option>`).join("");
+    return`<div class="item-card"><div style="display:flex;gap:8px;align-items:start"><div style="flex:1">
+      <select onchange="uP(${i},this.value)"><option value="">— Elegí producto —</option>
+      <optgroup label="⭐ Combos">${PL.filter(p=>p.n.startsWith("Combo")).map(p=>`<option value="${p.n}" ${it.prod===p.n?"selected":""}>${p.n}</option>`).join("")}</optgroup>
+      <optgroup label="🧴 Productos">${PL.filter(p=>!p.n.startsWith("Combo")).map(p=>`<option value="${p.n}" ${it.prod===p.n?"selected":""}>${p.n}</option>`).join("")}</optgroup></select>
+      ${it.prod?`<select onchange="uR(${i},this.value)">${ph2}</select>`:""}</div>
+      ${items.length>1?`<button class="btn-remove" onclick="rI(${i})">✕</button>`:""}</div>
+      ${it.price>0?`<div class="item-price">${fmt(it.price)}</div>`:""}</div>`;
+  }).join("")}
+  <button class="btn-add" onclick="aI()">+ Agregar otro producto</button></div>
 
-    <div class="section"><div class="section-t">🧾 Facturación</div>
-      <select onchange="fact=this.value;render()">
-        <option value="remito" ${fact==="remito"?"selected":""}>REMITO (sin IVA)</option>
-        <option value="factura" ${fact==="factura"?"selected":""}>FACTURA (+21% IVA)</option>
-      </select></div>
+  <div class="section"><div class="section-t">🧾 Facturación</div>
+  <select onchange="fact=this.value;render()">
+    <option value="remito" ${fact==="remito"?"selected":""}>REMITO (sin IVA)</option>
+    <option value="factura" ${fact==="factura"?"selected":""}>FACTURA (+21% IVA)</option>
+  </select></div>
 
-    <div class="section"><div class="section-t">💳 Forma de Pago</div>
-      <select onchange="pago=this.value;render()">
-        <optgroup label="Pagás al recibir">
-          <option value="CR-Efectivo" ${pago==="CR-Efectivo"?"selected":""}>💵 Efectivo al recibir</option>
-          <option value="CR-Cheque 30d" ${pago==="CR-Cheque 30d"?"selected":""}>📝 Cheque 30 días</option>
-          <option value="CR-Cheque 60d" ${pago==="CR-Cheque 60d"?"selected":""}>📝 Cheque 60 días</option>
-          <option value="CR-Cheque 90d" ${pago==="CR-Cheque 90d"?"selected":""}>📝 Cheque 90 días</option>
-        </optgroup>
-        <optgroup label="Pago anticipado (antes del envío)">
-          <option value="Transferencia" ${pago==="Transferencia"?"selected":""}>🏦 Transferencia bancaria</option>
-          <option value="MercadoPago" ${pago==="MercadoPago"?"selected":""}>📱 MercadoPago</option>
-          <option value="E-cheq" ${pago==="E-cheq"?"selected":""}>📄 E-cheq 30/60/90</option>
-        </optgroup>
-      </select>
-      ${isAnticipado()?'<div class="pago-badge pago-pend">⏳ Pago anticipado — se procesa al confirmar pago</div>':'<div class="pago-badge pago-cr">✅ Pagás cuando recibís la mercadería</div>'}
-    </div>
+  <div class="section"><div class="section-t">💳 Forma de Pago</div>
+  <select onchange="pago=this.value;render()">
+    <optgroup label="Pagás al recibir">
+      <option value="CR-Efectivo" ${pago==="CR-Efectivo"?"selected":""}>💵 Efectivo al recibir</option>
+      <option value="CR-Cheque 30d" ${pago==="CR-Cheque 30d"?"selected":""}>📝 Cheque 30 días</option>
+      <option value="CR-Cheque 60d" ${pago==="CR-Cheque 60d"?"selected":""}>📝 Cheque 60 días</option>
+      <option value="CR-Cheque 90d" ${pago==="CR-Cheque 90d"?"selected":""}>📝 Cheque 90 días</option>
+    </optgroup>
+    <optgroup label="Pago anticipado (antes del envío)">
+      <option value="Transferencia" ${pago==="Transferencia"?"selected":""}>🏦 Transferencia bancaria</option>
+      <option value="MercadoPago" ${pago==="MercadoPago"?"selected":""}>📱 MercadoPago</option>
+      <option value="E-cheq" ${pago==="E-cheq"?"selected":""}>📄 E-cheq 30/60/90</option>
+    </optgroup>
+  </select>
+  ${antic()?'<div class="pago-badge pago-pend">⏳ Primero pagás, después se procesa el envío</div>':'<div class="pago-badge pago-cr">✅ Pagás cuando recibís la mercadería</div>'}
+  </div>
 
-    <div class="section"><div class="section-t">🚚 Envío</div>
-      <select onchange="envio=this.value;render()">
-        <option value="gratis" ${envio==="gratis"?"selected":""}>🆓 Envío GRATIS (paga QUIMAX)</option>
-        <option value="cliente" ${envio==="cliente"?"selected":""}>📦 Envío a mi cargo</option>
-        <option value="consultar" ${envio==="consultar"?"selected":""}>🏝️ Zona especial (Ushuaia/isla)</option>
-      </select>
-      <div class="envio-note">🚚 Envío a todo el país · Plazo ~1 semana</div></div>
+  <div class="section"><div class="section-t">🚚 Envío</div>
+  <select onchange="envio=this.value;render()">
+    <option value="gratis" ${envio==="gratis"?"selected":""}>🆓 Envío GRATIS (paga QUIMAX)</option>
+    <option value="cliente" ${envio==="cliente"?"selected":""}>📦 Envío a mi cargo</option>
+    <option value="consultar" ${envio==="consultar"?"selected":""}>🏝️ Zona especial (Ushuaia/isla)</option>
+  </select>
+  <div class="envio-note">🚚 Envío a todo el país · Plazo ~1 semana</div></div>
 
-    <div class="totals">
-      <div class="total-row"><span>Subtotal:</span><span style="font-weight:600">${fmt(sub)}</span></div>
-      ${iva>0?`<div class="total-row" style="color:#E65100"><span>IVA (21%):</span><span style="font-weight:600">+${fmt(iva)}</span></div>`:""}
-      <div class="total-row total-final"><span>TOTAL:</span><span>${fmt(total)}</span></div>
-    </div>
+  <div class="totals">
+    <div class="total-row"><span>Subtotal:</span><span style="font-weight:600">${fmt(sub)}</span></div>
+    ${iva>0?`<div class="total-row" style="color:#E65100"><span>IVA (21%):</span><span style="font-weight:600">+${fmt(iva)}</span></div>`:""}
+    <div class="total-row total-final"><span>TOTAL:</span><span>${fmt(tot)}</span></div>
+  </div>
 
-    <div class="section"><div class="section-t">👤 Tus Datos</div>
-      <div class="card">
-        <input placeholder="Nombre y Apellido *" value="${esc(cli.nm)}" oninput="cli.nm=this.value;chk()">
-        <input placeholder="CUIT / CUIL / DNI *" value="${esc(cli.ci)}" oninput="cli.ci=this.value;chk()" inputmode="numeric">
-        <input placeholder="Dirección de entrega *" value="${esc(cli.dr)}" oninput="cli.dr=this.value;chk()">
-        <input placeholder="Localidad *" value="${esc(cli.lc)}" oninput="cli.lc=this.value;chk()">
-        <input placeholder="Provincia *" value="${esc(cli.pv)}" oninput="cli.pv=this.value;chk()">
-        <input placeholder="Código Postal *" value="${esc(cli.cp)}" oninput="cli.cp=this.value;chk()" inputmode="numeric">
-        <input placeholder="Email (opcional)" value="${esc(cli.em)}" oninput="cli.em=this.value" type="email">
-      </div></div>
+  <div class="section"><div class="section-t">👤 Tus Datos</div><div class="card">
+    <input placeholder="Nombre y Apellido *" value="${esc(cli.nm)}" oninput="cli.nm=this.value;chk()">
+    <input placeholder="CUIT / CUIL / DNI *" value="${esc(cli.ci)}" oninput="cli.ci=this.value;chk()" inputmode="numeric">
+    <input placeholder="Dirección de entrega *" value="${esc(cli.dr)}" oninput="cli.dr=this.value;chk()">
+    <input placeholder="Localidad *" value="${esc(cli.lc)}" oninput="cli.lc=this.value;chk()">
+    <input placeholder="Provincia *" value="${esc(cli.pv)}" oninput="cli.pv=this.value;chk()">
+    <input placeholder="Código Postal *" value="${esc(cli.cp)}" oninput="cli.cp=this.value;chk()" inputmode="numeric">
+    <input placeholder="Email (opcional)" value="${esc(cli.em)}" oninput="cli.em=this.value" type="email">
+  </div></div>
 
-    <button class="btn-confirm" id="btnConfirm" onclick="confirmar()" ${valid?"":"disabled"}>
-      ${isAnticipado()?"⏳ CONFIRMAR Y PAGAR":"✅ CONFIRMAR PEDIDO"}${total>0?" — "+fmt(total):""}
-    </button>
-    <div class="nota">Al confirmar se envía tu pedido por WhatsApp${isAnticipado()?" y se abre la página de pago":""}.<br>QUIMAX S.A. — Fabricantes +30 años — quimax.com.ar</div>`;
+  <button id="btnC" class="${antic()?"btn-pagar":"btn-cr"}" onclick="go()" ${ok?"":"disabled"} style="${ok?"":"background:#ccc;box-shadow:none"}">
+    ${antic()?"⏳ CONFIRMAR Y PAGAR":"✅ CONFIRMAR PEDIDO"}${tot>0?" — "+fmt(tot):""}
+  </button>
+  <div class="nota">${antic()?"Al confirmar se abre la página de pago. Tu pedido se envía DESPUÉS de pagar.":"Al confirmar se envía tu pedido por WhatsApp."}<br>QUIMAX S.A. — quimax.com.ar</div>`;
 }
 
-function esc(s){return(s||"").replace(/"/g,"&quot;")}
-function uProd(i,v){items[i].prod=v;items[i].pres="";items[i].price=0;render()}
-function uPres(i,v){items[i].pres=v;const pl=PRICE_LIST.find(p=>p.n===items[i].prod);const o=pl?.opts.find(x=>x.q===v);items[i].price=o?.p||0;render()}
-function aItem(){items.push({prod:"",pres:"",price:0});render()}
-function rItem(i){items.splice(i,1);render()}
+function uP(i,v){items[i].prod=v;items[i].pres="";items[i].price=0;render()}
+function uR(i,v){items[i].pres=v;const pl=PL.find(p=>p.n===items[i].prod);const o=pl?.opts.find(x=>x.q===v);items[i].price=o?.p||0;render()}
+function aI(){items.push({prod:"",pres:"",price:0});render()}
+function rI(i){items.splice(i,1);render()}
 
-function confirmar(){
+function buildMsg(estado){
   const sub=items.reduce((s,it)=>s+it.price,0);
   const iva=fact==="factura"?Math.round(sub*0.21):0;
-  const total=sub+iva;
+  const tot=sub+iva;
   const itTxt=items.filter(it=>it.prod).map(it=>it.prod+" "+it.pres+" ("+fmt(it.price)+")").join("\n");
   const pagoTxt=pago.replace("CR-","Contra reembolso - ");
-  const envioTxt=envio==="gratis"?"Envío SIN CARGO":envio==="cliente"?"Envío a cargo del cliente":"Zona especial";
-  const antic=isAnticipado();
+  const envTxt=envio==="gratis"?"Envío SIN CARGO":envio==="cliente"?"Envío a cargo del cliente":"Zona especial";
+  return{msg:`📋 *PEDIDO QUIMAX*\n\n${estado}\n\n👤 *${cli.nm}*\n🆔 ${cli.ci}\n📍 ${cli.dr}\n🏙️ ${cli.lc}, ${cli.pv} (CP ${cli.cp})\n${cli.em?"📧 "+cli.em+"\n":""}\n📦 *Productos:*\n${itTxt}\n\n💲 Subtotal: ${fmt(sub)}${iva?"\n📊 IVA 21%: +"+fmt(iva):""}\n💰 *TOTAL: ${fmt(tot)}*\n\n🧾 ${fact==="factura"?"FACTURA":"REMITO"}\n💳 ${pagoTxt}\n🚚 ${envTxt}\n📅 ${new Date().toLocaleDateString("es-AR")}`,tot,pagoTxt,envTxt};
+}
 
-  const estado=antic?"⏳ *PAGO PENDIENTE* — Anticipado por "+pagoTxt:"✅ *CONTRA REEMBOLSO* — "+pagoTxt;
-
-  const msg=`📋 *PEDIDO QUIMAX*\n\n${estado}\n\n👤 *${cli.nm}*\n🆔 ${cli.ci}\n📍 ${cli.dr}\n🏙️ ${cli.lc}, ${cli.pv} (CP ${cli.cp})\n${cli.em?"📧 "+cli.em+"\n":""}\n📦 *Productos:*\n${itTxt}\n\n💲 Subtotal: ${fmt(sub)}${iva?"\n📊 IVA 21%: +"+fmt(iva):""}\n💰 *TOTAL: ${fmt(total)}*\n\n🧾 ${fact==="factura"?"FACTURA":"REMITO"}\n🚚 ${envioTxt}\n📅 ${new Date().toLocaleDateString("es-AR")}`;
-
-  const ph=sellerPhone.replace(/\D/g,"");
-
-  if(antic){
-    if(ph)window.open("https://wa.me/"+ph+"?text="+encodeURIComponent(msg),"_blank");
-    const od=encodeURIComponent(JSON.stringify({items:items.filter(i=>i.prod),cli,total,pago,msg}));
-    setTimeout(()=>{window.location.href="pago.html?total="+total+"&pago="+pago+"&ph="+ph+"&cli="+encodeURIComponent(cli.nm)+"&order="+od;},800);
+function go(){
+  const p=ph.replace(/\D/g,"");
+  if(antic()){
+    // Anticipado: NO manda WhatsApp ahora. Va a pago.html. El WhatsApp se manda DESPUÉS de pagar.
+    const {msg,tot}=buildMsg("⏳ *PAGO PENDIENTE*");
+    const od=encodeURIComponent(JSON.stringify({items:items.filter(i=>i.prod),cli,fact,pago,envio,tot,msg}));
+    window.location.href="pago.html?total="+tot+"&pago="+encodeURIComponent(pago)+"&ph="+p+"&cli="+encodeURIComponent(cli.nm)+"&order="+od;
   }else{
-    if(ph)window.open("https://wa.me/"+ph+"?text="+encodeURIComponent(msg),"_blank");
-    showSuccess(total,pagoTxt,envioTxt);
+    // Contra reembolso: manda WhatsApp directo con ✅
+    const {msg,tot,pagoTxt,envTxt}=buildMsg("✅ *CONTRA REEMBOLSO*");
+    if(p)window.open("https://wa.me/"+p+"?text="+encodeURIComponent(msg),"_blank");
+    document.getElementById("app").innerHTML=`
+      <div style="text-align:center;padding:40px 20px">
+        <div style="font-size:64px;margin-bottom:16px">✅</div>
+        <div style="font-size:22px;font-weight:700;color:#1B5E20;margin-bottom:10px">¡Pedido confirmado!</div>
+        <div style="display:inline-block;background:#1B5E20;color:#fff;padding:8px 24px;border-radius:30px;font-size:16px;font-weight:700;margin-bottom:16px">CONTRA REEMBOLSO</div>
+        <div style="font-size:15px;color:#555;margin-bottom:20px;line-height:1.5">Tu pedido fue enviado. Pagás <b>${pagoTxt.replace("Contra reembolso - ","")}</b> cuando lo recibís.</div>
+        <div style="background:#fff;border-radius:12px;border:1px solid #e0e0e0;padding:16px;text-align:left;font-size:14px;line-height:1.8">
+          ${items.filter(i=>i.prod).map(i=>"📦 <b>"+i.prod+"</b> "+i.pres).join("<br>")}
+          <br>💰 <b>Total: ${fmt(tot)}</b>
+          <br>🚚 ${envTxt}
+        </div>
+        <div style="font-size:13px;color:#888;margin-top:24px">QUIMAX S.A. — quimax.com.ar</div>
+      </div>`;
   }
 }
-
-function showSuccess(total,pagoTxt,envioTxt){
-  document.getElementById("app").innerHTML=`
-    <div class="success-screen">
-      <div class="success-icon">✅</div>
-      <div class="success-title">¡Pedido enviado!</div>
-      <div class="success-desc">Tu pedido fue enviado por WhatsApp.<br>En breve te contactamos para coordinar.</div>
-      <div class="success-card">
-        <div>📦 ${items.filter(i=>i.prod).map(i=>"<b>"+i.prod+"</b> "+i.pres).join("<br>")}</div>
-        <div style="margin-top:8px">💰 <b>Total: ${fmt(total)}</b></div>
-        <div>💳 ${pagoTxt}</div>
-        <div>🚚 ${envioTxt}</div>
-      </div>
-      <div class="nota" style="margin-top:20px">QUIMAX S.A. — quimax.com.ar</div>
-    </div>`;
-}
-
 render();
 </script>
 </body>

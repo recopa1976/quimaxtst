@@ -712,7 +712,7 @@ navigator.clipboard.writeText(txt).then(()=>alert("✅ Link copiado!")).catch(()
 {INDS.map(ind=><button key={ind.id} className="rubro-btn" onClick={()=>{setTab("productos");setRf(ind.id);setQ("")}}>
 <span>{ind.lb}</span><span style={{fontSize:19,color:"#888",fontWeight:400}}>{ind.pi.length} prod →</span></button>)}</div>}
 
-{tab==="pedidos"&&<div>
+{tab==="pedidos"&&<div><a href="pedidos.html" style={{display:"block",width:"100%",padding:12,background:"#1B5E20",color:"#fff",borderRadius:10,textAlign:"center",textDecoration:"none",fontSize:16,fontWeight:700,marginBottom:12}}>📋 ABRIR PANEL DE PEDIDOS →</a>
 {ords.length===0?<div style={{textAlign:"center",padding:24,color:"#888",fontSize:20}}>📋 Sin pedidos</div>:
 <div>{ords.map((o,i)=><div key={o.id||i} className="order-card">
 <div style={{display:"flex",justifyContent:"space-between"}}><div style={{fontWeight:700,fontSize:22,color:"#1B5E20"}}>{o.pr}</div><div style={{fontSize:22,color:"#888"}}>{new Date(o.dt).toLocaleDateString("es-AR")}</div></div>

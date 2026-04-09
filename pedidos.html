@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#1B5E20">
+<title>QUIMAX — Pedidos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;background:#f5f5f0;color:#1a1a1a;min-height:100vh}
+.hdr{background:linear-gradient(135deg,#1B5E20,#2E7D32);padding:16px 20px;color:#fff;position:sticky;top:0;z-index:10}
+.hdr h1{font-size:18px}.hdr p{font-size:12px;opacity:.8}
+.wrap{max-width:600px;margin:0 auto;padding:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.stat{background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #e0e0e0}
+.stat .num{font-size:24px;font-weight:700}.stat .lbl{font-size:11px;color:#888}
+.filters{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px}
+.filt{padding:8px 14px;border-radius:20px;border:1px solid #ddd;background:#fff;font-size:13px;cursor:pointer;white-space:nowrap;font-family:inherit}
+.filt.act{background:#1B5E20;color:#fff;border-color:#1B5E20}
+.order{background:#fff;border-radius:12px;border:1px solid #e0e0e0;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.order-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.order-name{font-size:16px;font-weight:700;color:#1a1a1a}
+.order-date{font-size:12px;color:#888}
+.badge{padding:4px 10px;border-radius:16px;font-size:11px;font-weight:700;display:inline-block}
+.badge-cr{background:#E8F5E9;color:#1B5E20}
+.badge-pend{background:#FFF3E0;color:#E65100}
+.badge-paid{background:#1B5E20;color:#fff}
+.order-detail{font-size:13px;color:#555;line-height:1.6}
+.order-total{font-size:18px;font-weight:700;color:#1B5E20;margin-top:6px}
+.order-actions{display:flex;gap:6px;margin-top:8px}
+.btn-sm{padding:8px 12px;border-radius:8px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-paid{background:#1B5E20;color:#fff}
+.btn-del{background:#ffebee;color:#c62828}
+.btn-wa2{background:#25D366;color:#fff}
+.empty{text-align:center;padding:40px 20px;color:#888}
+.empty .icon{font-size:48px;margin-bottom:10px}
+.nota{font-size:12px;color:#888;text-align:center;margin-top:16px}
+.alert{background:#E8F5E9;border:2px solid #4CAF50;border-radius:12px;padding:16px;text-align:center;margin-bottom:16px}
+.alert .icon{font-size:32px}.alert .text{font-size:15px;font-weight:700;color:#1B5E20;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="hdr">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><h1>📋 Pedidos QUIMAX</h1><p>Panel de gestión</p></div>
+<a href="index.html" style="color:#fff;font-size:13px;text-decoration:none;background:rgba(255,255,255,.2);padding:6px 12px;border-radius:8px">🧴 Guía</a>
+</div>
+</div>
+<div class="wrap" id="app"></div>
+
+<script>
+const KEY="qx_orders";
+let filter="todos";
+
+function getOrders(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch{return[]}}
+function saveOrders(o){localStorage.setItem(KEY,JSON.stringify(o))}
+function fmt(n){return"$"+parseInt(n).toLocaleString("es-AR")}
+
+// Check if there's order data in URL
+const params=new URLSearchParams(window.location.search);
+const addData=params.get("d");
+let justAdded=false;
+
+if(addData){
+  try{
+    const order=JSON.parse(decodeURIComponent(atob(addData)));
+    const orders=getOrders();
+    // Check if already exists by id
+    if(!orders.find(o=>o.id===order.id)){
+      orders.unshift(order);
+      saveOrders(orders);
+      justAdded=true;
+    }
+  }catch(e){console.log("Error parsing order",e)}
+  // Clean URL
+  window.history.replaceState({},"",window.location.pathname);
+}
+
+// Check for payment confirmation
+const payId=params.get("paid");
+if(payId){
+  const orders=getOrders();
+  const idx=orders.findIndex(o=>o.id==payId);
+  if(idx>=0){orders[idx].estado="pagado";saveOrders(orders);justAdded=true;}
+  window.history.replaceState({},"",window.location.pathname);
+}
+
+function render(){
+  const orders=getOrders();
+  const filtered=filter==="todos"?orders:orders.filter(o=>o.estado===filter);
+  const total=orders.length;
+  const pend=orders.filter(o=>o.estado==="pendiente").length;
+  const paid=orders.filter(o=>o.estado==="pagado"||o.estado==="cr").length;
+
+  document.getElementById("app").innerHTML=`
+    ${justAdded?'<div class="alert"><div class="icon">✅</div><div class="text">Pedido registrado correctamente</div></div>':""}
+    
+    <div class="stats">
+      <div class="stat"><div class="num">${total}</div><div class="lbl">Total</div></div>
+      <div class="stat"><div class="num" style="color:#E65100">${pend}</div><div class="lbl">Pendientes</div></div>
+      <div class="stat"><div class="num" style="color:#1B5E20">${paid}</div><div class="lbl">Confirmados</div></div>
+    </div>
+
+    <div class="filters">
+      ${["todos","cr","pendiente","pagado"].map(f=>`<button class="filt ${filter===f?"act":""}" onclick="filter='${f}';render()">${f==="todos"?"📋 Todos":f==="cr"?"✅ C/Reembolso":f==="pendiente"?"⏳ Pendientes":"💰 Pagados"}</button>`).join("")}
+    </div>
+
+    ${filtered.length===0?`<div class="empty"><div class="icon">📭</div><div style="font-size:15px">No hay pedidos${filter!=="todos"?" con este filtro":""}</div><div style="font-size:13px;margin-top:6px">Los pedidos llegan cuando un cliente completa el formulario</div></div>`:""}
+
+    ${filtered.map((o,i)=>{
+      const bi=o.estado==="pagado"?"badge-paid":o.estado==="pendiente"?"badge-pend":"badge-cr";
+      const bt=o.estado==="pagado"?"✅ PAGADO":o.estado==="pendiente"?"⏳ PENDIENTE":"✅ C/REEMBOLSO";
+      return`<div class="order">
+        <div class="order-hdr">
+          <div class="order-name">${o.nombre||"Sin nombre"}</div>
+          <span class="badge ${bi}">${bt}</span>
+        </div>
+        <div class="order-detail">
+          🆔 ${o.cuit||"-"}<br>
+          📍 ${o.direccion||""}, ${o.localidad||""}, ${o.provincia||""} ${o.cp?("("+o.cp+")"):""}
+          ${o.email?"<br>📧 "+o.email:""}
+          <br>📦 ${o.productos||"-"}
+          <br>💳 ${o.pago||"-"} · 🧾 ${o.factura||"-"}
+        </div>
+        <div class="order-total">💰 ${o.total||"$0"}</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">📅 ${o.fecha||"-"}</div>
+        <div class="order-actions">
+          ${o.estado==="pendiente"?`<button class="btn-sm btn-paid" onclick="markPaid(${o.id})">✅ Marcar PAGADO</button>`:""}
+          <button class="btn-sm btn-wa2" onclick="callClient('${(o.telefono||"").replace(/\\D/g,"")}')">📞 WhatsApp</button>
+          <button class="btn-sm btn-del" onclick="if(confirm('¿Borrar?'))delOrder(${o.id})">🗑️</button>
+        </div>
+      </div>`;
+    }).join("")}
+
+    ${orders.length>0?`<button onclick="if(confirm('¿Borrar TODOS los pedidos?')){saveOrders([]);render()}" style="width:100%;padding:10px;background:#ffebee;border:1px solid #ef9a9a;border-radius:8px;color:#c62828;font-size:13px;cursor:pointer;margin-top:8px;font-family:inherit">🗑️ Borrar todos</button>`:""}
+    
+    <div class="nota">Panel de pedidos — Los datos se guardan en este dispositivo.<br>QUIMAX S.A.</div>
+  `;
+  justAdded=false;
+}
+
+function markPaid(id){
+  const orders=getOrders();
+  const idx=orders.findIndex(o=>o.id==id);
+  if(idx>=0){orders[idx].estado="pagado";saveOrders(orders);render();}
+}
+function delOrder(id){
+  const orders=getOrders();
+  saveOrders(orders.filter(o=>o.id!=id));render();
+}
+function callClient(ph){
+  if(ph)window.open("https://wa.me/"+ph,"_blank");
+  else alert("No hay teléfono registrado");
+}
+
+render();
+</script>
+</body>
+</html>
