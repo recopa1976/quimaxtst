@@ -109,6 +109,12 @@ let fact="remito",pago="CR-Efectivo",envio="gratis";
 const fmt=(n)=>"$"+n.toLocaleString("es-AR");
 const isAnticipado=()=>["Transferencia","MercadoPago","E-cheq"].includes(pago);
 
+function chk(){
+  const valid=cli.nm&&cli.ci&&cli.dr&&cli.lc&&cli.pv&&cli.cp&&items.some(i=>i.prod&&i.pres);
+  const btn=document.getElementById("btnConfirm");
+  if(btn){btn.disabled=!valid;btn.style.background=valid?"#25D366":"#ccc";}
+}
+
 function render(){
   const sub=items.reduce((s,it)=>s+it.price,0);
   const iva=fact==="factura"?Math.round(sub*0.21):0;
@@ -178,16 +184,16 @@ function render(){
 
     <div class="section"><div class="section-t">👤 Tus Datos</div>
       <div class="card">
-        <input placeholder="Nombre y Apellido *" value="${esc(cli.nm)}" oninput="cli.nm=this.value">
-        <input placeholder="CUIT / CUIL / DNI *" value="${esc(cli.ci)}" oninput="cli.ci=this.value" inputmode="numeric">
-        <input placeholder="Dirección de entrega *" value="${esc(cli.dr)}" oninput="cli.dr=this.value">
-        <input placeholder="Localidad *" value="${esc(cli.lc)}" oninput="cli.lc=this.value">
-        <input placeholder="Provincia *" value="${esc(cli.pv)}" oninput="cli.pv=this.value">
-        <input placeholder="Código Postal *" value="${esc(cli.cp)}" oninput="cli.cp=this.value" inputmode="numeric">
+        <input placeholder="Nombre y Apellido *" value="${esc(cli.nm)}" oninput="cli.nm=this.value;chk()">
+        <input placeholder="CUIT / CUIL / DNI *" value="${esc(cli.ci)}" oninput="cli.ci=this.value;chk()" inputmode="numeric">
+        <input placeholder="Dirección de entrega *" value="${esc(cli.dr)}" oninput="cli.dr=this.value;chk()">
+        <input placeholder="Localidad *" value="${esc(cli.lc)}" oninput="cli.lc=this.value;chk()">
+        <input placeholder="Provincia *" value="${esc(cli.pv)}" oninput="cli.pv=this.value;chk()">
+        <input placeholder="Código Postal *" value="${esc(cli.cp)}" oninput="cli.cp=this.value;chk()" inputmode="numeric">
         <input placeholder="Email (opcional)" value="${esc(cli.em)}" oninput="cli.em=this.value" type="email">
       </div></div>
 
-    <button class="btn-confirm" onclick="confirmar()" ${valid?"":"disabled"}>
+    <button class="btn-confirm" id="btnConfirm" onclick="confirmar()" ${valid?"":"disabled"}>
       ${isAnticipado()?"⏳ CONFIRMAR Y PAGAR":"✅ CONFIRMAR PEDIDO"}${total>0?" — "+fmt(total):""}
     </button>
     <div class="nota">Al confirmar se envía tu pedido por WhatsApp${isAnticipado()?" y se abre la página de pago":""}.<br>QUIMAX S.A. — Fabricantes +30 años — quimax.com.ar</div>`;
