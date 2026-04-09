@@ -59,21 +59,50 @@ function fmt(n){return"$"+parseInt(n).toLocaleString("es-AR")}
 
 // Check if there's order data in URL
 const params=new URLSearchParams(window.location.search);
-const addData=params.get("d");
 let justAdded=false;
 
-if(addData){
+// Method 1: Short URL params (new)
+const pNm=params.get("nm");
+if(pNm){
+  const order={
+    id:parseInt(params.get("id")||Date.now()),
+    nombre:pNm,
+    cuit:params.get("ci")||"",
+    direccion:params.get("dr")||"",
+    localidad:params.get("lc")||"",
+    provincia:params.get("pv")||"",
+    cp:params.get("cp")||"",
+    email:"",
+    productos:decodeURIComponent(params.get("pr")||"").replace(/\+/g," + "),
+    total:"$"+parseInt(params.get("t")||"0").toLocaleString("es-AR"),
+    pago:params.get("pg")||"",
+    factura:params.get("f")==="F"?"Factura":"Remito",
+    envio:"",
+    estado:params.get("e")||"cr",
+    fecha:new Date().toLocaleDateString("es-AR"),
+    telefono:""
+  };
+  const orders=getOrders();
+  if(!orders.find(o=>o.id===order.id)){
+    orders.unshift(order);
+    saveOrders(orders);
+    justAdded=true;
+  }
+  window.history.replaceState({},"",window.location.pathname);
+}
+
+// Method 2: Base64 encoded (old/fallback)
+const addData=params.get("d");
+if(addData&&!pNm){
   try{
     const order=JSON.parse(decodeURIComponent(atob(addData)));
     const orders=getOrders();
-    // Check if already exists by id
     if(!orders.find(o=>o.id===order.id)){
       orders.unshift(order);
       saveOrders(orders);
       justAdded=true;
     }
-  }catch(e){console.log("Error parsing order",e)}
-  // Clean URL
+  }catch(e){console.log("Error",e)}
   window.history.replaceState({},"",window.location.pathname);
 }
 

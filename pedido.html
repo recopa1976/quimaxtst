@@ -190,17 +190,27 @@ function buildMsg(estado){
   return{msg:`📋 *PEDIDO QUIMAX*\n\n${estado}\n\n👤 *${cli.nm}*\n🆔 ${cli.ci}\n📍 ${cli.dr}\n🏙️ ${cli.lc}, ${cli.pv} (CP ${cli.cp})\n${cli.em?"📧 "+cli.em+"\n":""}\n📦 *Productos:*\n${itTxt}\n\n💲 Subtotal: ${fmt(sub)}${iva?"\n📊 IVA 21%: +"+fmt(iva):""}\n💰 *TOTAL: ${fmt(tot)}*\n\n🧾 ${fact==="factura"?"FACTURA":"REMITO"}\n💳 ${pagoTxt}\n🚚 ${envTxt}\n📅 ${new Date().toLocaleDateString("es-AR")}`,tot,pagoTxt,envTxt};
 }
 
+function mkDashUrl(est,tot){
+  const prodS=items.filter(it=>it.prod).map(it=>it.prod+" "+it.pres).join("+");
+  const dp=new URLSearchParams();
+  dp.set("nm",cli.nm);dp.set("ci",cli.ci);dp.set("dr",cli.dr);dp.set("lc",cli.lc);
+  dp.set("pv",cli.pv);dp.set("cp",cli.cp);dp.set("pr",prodS);dp.set("t",tot.toString());
+  dp.set("pg",pago.replace("CR-","CR "));dp.set("f",fact==="factura"?"F":"R");dp.set("e",est);dp.set("id",Date.now().toString());
+  return "https://recopa1976.github.io/quimaxtst/pedidos.html?"+dp.toString();
+}
 function go(){
   const p=ph.replace(/\D/g,"");
   if(antic()){
-    // Anticipado: NO manda WhatsApp ahora. Va a pago.html. El WhatsApp se manda DESPUÉS de pagar.
     const {msg,tot}=buildMsg("⏳ *PAGO PENDIENTE*");
-    const od=encodeURIComponent(JSON.stringify({items:items.filter(i=>i.prod),cli,fact,pago,envio,tot,msg}));
-    window.location.href="pago.html?total="+tot+"&pago="+encodeURIComponent(pago)+"&ph="+p+"&cli="+encodeURIComponent(cli.nm)+"&order="+od;
+    const dUrl=mkDashUrl("pendiente",tot);
+    const fullMsg=msg+"\n\n📥 *Cargar pedido:*\n"+dUrl;
+    if(p)window.open("https://wa.me/"+p+"?text="+encodeURIComponent(fullMsg),"_blank");
+    setTimeout(function(){window.location.href="pago.html?total="+tot+"&pago="+encodeURIComponent(pago)+"&ph="+p+"&cli="+encodeURIComponent(cli.nm);},1500);
   }else{
-    // Contra reembolso: manda WhatsApp directo con ✅
     const {msg,tot,pagoTxt,envTxt}=buildMsg("✅ *CONTRA REEMBOLSO*");
-    if(p)window.open("https://wa.me/"+p+"?text="+encodeURIComponent(msg),"_blank");
+    const dUrl=mkDashUrl("cr",tot);
+    const fullMsg=msg+"\n\n📥 *Cargar pedido:*\n"+dUrl;
+    if(p)window.open("https://wa.me/"+p+"?text="+encodeURIComponent(fullMsg),"_blank");
     document.getElementById("app").innerHTML=`
       <div style="text-align:center;padding:40px 20px">
         <div style="font-size:64px;margin-bottom:16px">✅</div>
