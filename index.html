@@ -677,9 +677,13 @@ return(<div>
 <button onClick={()=>{
 const ph2=ph.replace(/\D/g,"");
 if(!ph2){setSp(true);return}
-const txt="*📋 PEDIDO QUIMAX*\n\nProducto: *"+sel.n+"*\n\nPor favor completá tus datos:\n\n👤 Nombre y Apellido:\n🆔 CUIT/CUIL/DNI:\n📍 Dirección:\n🏙️ Localidad:\n🗺️ Provincia:\n📮 Código Postal:\n📦 Cantidad que necesitás:\n💳 Forma de pago (efectivo/cheque/transferencia):\n\n_Respondé este mensaje con los datos completos y procesamos tu pedido. Envío GRATIS._";
-navigator.clipboard.writeText(txt).then(()=>alert("✅ Formulario copiado! Pegalo en el chat con tu cliente.")).catch(()=>{window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank")});
-}} style={{width:"100%",padding:10,background:"#1565C0",color:"#fff",border:"none",borderRadius:8,fontSize:22,fontWeight:700,cursor:"pointer",marginTop:4}}>📤 COPIAR FORMULARIO PARA ENVIAR AL CLIENTE</button>
+const base="https://recopa1976.github.io/quimaxtst/pedido.html";
+const pr0=sel.pr&&sel.pr[0]?sel.pr[0]:{q:"",t:""};
+const prN=pr0.t?parseInt(pr0.t.replace(/[^0-9]/g,"")):0;
+const url=base+"?prod="+encodeURIComponent(sel.n)+"&pres="+encodeURIComponent(pr0.q)+"&price="+prN+"&ph="+ph2;
+const txt="Hola! 🧪\nTe preparé el pedido de *"+sel.n+"*.\nCompletá tus datos en este link y confirmá:\n👉 "+url+"\n\n_Envío GRATIS a todo el país. Pagás al recibir._\nQUIMAX S.A.";
+navigator.clipboard.writeText(txt).then(()=>alert("✅ Link copiado! Pegalo en el chat con tu cliente.")).catch(()=>{window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank")});
+}} style={{width:"100%",padding:13,background:"#1565C0",color:"#fff",border:"none",borderRadius:8,fontSize:22,fontWeight:700,cursor:"pointer",marginTop:4}}>📤 ENVIAR FORMULARIO AL CLIENTE</button>
 </div></div></div>}
 
 {tab==="combos"&&<div>
@@ -694,9 +698,13 @@ navigator.clipboard.writeText(txt).then(()=>alert("✅ Formulario copiado! Pegal
 <button className="btn-wa" style={{fontSize:20,padding:7,marginTop:6}} onClick={()=>{setOf({n:c.n});setFd(f=>({...f,pr:c.n}))}}>📲 PEDIR (yo cargo)</button>
 <button onClick={()=>{
 const ph2=ph.replace(/\D/g,"");
-const txt="*📋 PEDIDO QUIMAX*\n\n📦 Combo: *"+c.n+"* ("+c.p+")\nContenido: "+c.it.join(" + ")+"\n\nPor favor completá tus datos:\n\n👤 Nombre y Apellido:\n🆔 CUIT/CUIL/DNI:\n📍 Dirección:\n🏙️ Localidad:\n🗺️ Provincia:\n📮 Código Postal:\n💳 Forma de pago (efectivo/cheque/transferencia):\n\n_Respondé este mensaje con los datos y procesamos tu pedido. Envío GRATIS._";
-navigator.clipboard.writeText(txt).then(()=>alert("✅ Copiado! Pegalo en el chat con tu cliente.")).catch(()=>{window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank")});
-}} style={{width:"100%",padding:7,background:"#1565C0",color:"#fff",border:"none",borderRadius:6,fontSize:19,fontWeight:700,cursor:"pointer",marginTop:4}}>📤 COPIAR FORM PARA CLIENTE</button>
+if(!ph2){setSp(true);return}
+const base="https://recopa1976.github.io/quimaxtst/pedido.html";
+const prN=c.p?parseInt(c.p.replace(/[^0-9]/g,"")):0;
+const url=base+"?prod="+encodeURIComponent(c.n)+"&pres=1+combo&price="+prN+"&ph="+ph2;
+const txt="Hola! 🧪\nTe preparé el *"+c.n+"* ("+c.p+").\nIncluye: "+c.it.join(" + ")+"\nCompletá tus datos acá:\n👉 "+url+"\n\n_Envío GRATIS. Pagás al recibir._";
+navigator.clipboard.writeText(txt).then(()=>alert("✅ Link copiado!")).catch(()=>{window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank")});
+}} style={{width:"100%",padding:10,background:"#1565C0",color:"#fff",border:"none",borderRadius:6,fontSize:19,fontWeight:700,cursor:"pointer",marginTop:4}}>📤 ENVIAR FORM AL CLIENTE</button>
 </div></div>)}</div>}
 
 {tab==="rubros"&&<div>
