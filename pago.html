@@ -50,8 +50,8 @@ const ph=params.get("ph")||"";
 const cliName=decodeURIComponent(params.get("cli")||"Cliente");
 const oid=params.get("oid")||"";
 const fmt=(n)=>"$"+n.toLocaleString("es-AR");
-const CBU="0000000000000000000000";
-const ALIAS="QUIMAX.VENTAS";
+const CBU="0000156000000000020200";
+const ALIAS="COLLECTIC200";
 const app=document.getElementById("app");
 
 function showPending(){
@@ -72,7 +72,8 @@ ${pago==="MercadoPago"?`
 <div class="card">
   <h2>🏦 Datos para Transferencia</h2>
   <div class="info">
-    <strong>Titular:</strong> QUIMAX S.A.<br><br>
+    <strong>Titular:</strong> COLLECTIC SERVICIOS S.A.<br>
+    <strong>CUIT:</strong> 30-71869380-9<br><br>
     <strong>CBU:</strong>
     <div class="cbu-box">${CBU}</div>
     <button class="btn btn-copy" onclick="navigator.clipboard.writeText('${CBU}').then(()=>alert('✅ CBU copiado'))">📋 Copiar CBU</button>
